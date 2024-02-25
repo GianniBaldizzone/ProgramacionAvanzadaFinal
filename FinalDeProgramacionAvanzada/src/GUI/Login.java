@@ -1,11 +1,12 @@
 package GUI;
 import java.awt.EventQueue;
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Modelo.Conexion;
+import Controllers.Controller_DataBase;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -30,7 +31,7 @@ public class Login extends JFrame {
 	private String contraseña;
 	private JLabel lbl_error;
 	private JPasswordField textField;
-	private Conexion conexion;
+	private Controller_DataBase conexion;
 	
 	
 	
@@ -75,7 +76,7 @@ public class Login extends JFrame {
 	 */
 	public Login() {
 		
-		conexion = new Conexion();
+		Controller_DataBase conexion = new Controller_DataBase();
 		conexion.conectar();
          
 		
