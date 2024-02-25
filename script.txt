@@ -1,0 +1,94 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema cajero
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `cajero` ;
+
+-- -----------------------------------------------------
+-- Schema cajero
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `cajero` DEFAULT CHARACTER SET utf8 ;
+USE `cajero` ;
+
+-- -----------------------------------------------------
+-- Table `usuario`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `usuario` ;
+
+CREATE TABLE IF NOT EXISTS `usuario` (
+  `id` INT NOT NULL,
+  `nombre` VARCHAR(45) NOT NULL,
+  `apellido` VARCHAR(45) NOT NULL,
+  `mail` VARCHAR(45) NOT NULL,
+  `telefono` VARCHAR(45) NOT NULL,
+  `direccion` VARCHAR(45) NOT NULL,
+  `dni` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `cuenta`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `cuenta` ;
+
+CREATE TABLE IF NOT EXISTS `cuenta` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `numero_cuenta` INT NOT NULL,
+  `saldo` DOUBLE NOT NULL,
+  `pin` VARCHAR(45) NOT NULL,
+  `tipo_cuenta` VARCHAR(45) NOT NULL,
+  `usuario_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_cuenta_usuario1`
+    FOREIGN KEY (`usuario_id`)
+    REFERENCES `usuario` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_cuenta_usuario1_idx` ON `cuenta` (`usuario_id` ASC) ;
+
+
+-- -----------------------------------------------------
+-- Table `transaccion`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `transaccion` ;
+
+CREATE TABLE IF NOT EXISTS `transaccion` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `fecha_transaccion` DATETIME NOT NULL,
+  `cuenta_id` INT NOT NULL,
+  `monto` DOUBLE NOT NULL,
+  `tipo` VARCHAR(45) NOT NULL,
+  `transaccioncol` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_transaccion_cuenta1`
+    FOREIGN KEY (`cuenta_id`)
+    REFERENCES `cuenta` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_transaccion_cuenta1_idx` ON `transaccion` (`cuenta_id` ASC) ;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+-- -----------------------------------------------------
+-- Data for table `usuario`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `cajero`;
+INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `mail`, `telefono`, `direccion`, `dni`) VALUES (1, 'Gianni', 'Baldizzone', 'gianni@gmail.com', '1145678907', 'Acoyte 420', '44891361');
+INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `mail`, `telefono`, `direccion`, `dni`) VALUES (2, 'Victoria', 'Troiano', 'vic@gmail.com', '1123456789', 'Billinghurst 234', '44567432');
+
+COMMIT;
+
