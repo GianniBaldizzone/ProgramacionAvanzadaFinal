@@ -4,12 +4,17 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Modelo.Conexion;
+
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionListener;
@@ -25,7 +30,7 @@ public class Login extends JFrame {
 	private String contraseña;
 	private JLabel lbl_error;
 	private JPasswordField textField;
-
+	private Conexion conexion;
 	
 	
 	
@@ -57,6 +62,7 @@ public class Login extends JFrame {
 					Login frame = new Login();
 					frame.setVisible(true);
 					
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -69,7 +75,9 @@ public class Login extends JFrame {
 	 */
 	public Login() {
 		
-		
+		conexion = new Conexion();
+		conexion.conectar();
+         
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 902, 528);
