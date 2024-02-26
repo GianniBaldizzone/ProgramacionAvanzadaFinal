@@ -16,9 +16,9 @@ public class Controller_DataBase {
 	Class.forName("com.mysql.jdbc.Driver");
 	con = 
 	(Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/cajero","root","");
-	JOptionPane.showMessageDialog(null, "Conexion a la base de datos exitosa");
+	System.out.println("Conexion a la base de datos exitosa");
 	} catch (Exception e) {
-	JOptionPane.showMessageDialog(null, "Error al conectarse a la base de datos");
+	System.out.println("Error al conectarse a la base de datos");
 	}
 	return con; 
 	}

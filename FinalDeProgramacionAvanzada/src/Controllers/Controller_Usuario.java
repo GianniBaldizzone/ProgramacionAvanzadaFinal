@@ -1,5 +1,6 @@
 package Controllers;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.mysql.jdbc.Connection;
@@ -13,7 +14,28 @@ public class Controller_Usuario {
     public Controller_Usuario(Connection conexion) {
         this.conexion =  conexion;
     }
+    
+    public String obtenerNombreUsuario(int numeroCuenta) {
+        String nombreUsuario = null;
+        try {
+            // Consulta para obtener el nombre del usuario asociado al número de cuenta
+            String query = "SELECT u.nombre " +
+                           "FROM cuenta c " +
+                           "JOIN usuario u ON c.usuario_id = u.id " +
+                           "WHERE c.numero_cuenta = ?";
+            PreparedStatement statement = (PreparedStatement) conexion.prepareStatement(query);
+            statement.setInt(1, numeroCuenta);
+            ResultSet resultSet = statement.executeQuery();
 
+            if (resultSet.next()) {
+                nombreUsuario = resultSet.getString("nombre");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return nombreUsuario;
+    }
+    
     public void agregarUsuario(Usuario usuario) throws SQLException {
         String query = "INSERT INTO usuario (nombre, apellido, mail, telefono, direccion, dni) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = (PreparedStatement) conexion.prepareStatement(query)) {

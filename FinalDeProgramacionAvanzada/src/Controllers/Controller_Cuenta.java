@@ -29,6 +29,7 @@ public class Controller_Cuenta {
 
 	            if (resultSet.next()) {
 	                int count = resultSet.getInt("count");
+	                
 	                return count > 0; // Si count es mayor que cero, la cuenta existe y la autenticación es exitosa
 	            }
 	        } catch (SQLException e) {
@@ -36,6 +37,8 @@ public class Controller_Cuenta {
 	        }
 	        return false; // Si hubo algún error o la cuenta no existe, retornamos false
 	    }
+	    
+	   
 	    
 	    
 	    

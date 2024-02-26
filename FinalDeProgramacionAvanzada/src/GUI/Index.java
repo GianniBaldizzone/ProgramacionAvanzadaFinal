@@ -22,21 +22,12 @@ public class Index extends JFrame {
 
 	private JPanel contentPane;
 	private JButton btnNewButton;
-	private JLabel lbl_usuario;
-	private JLabel lbl_contraseña;
+	JLabel lbl_usuario;
 	private JLabel lblNewLabel_3;
 	
 	
 
-	public void setearNombre(String usuario) {
-		lbl_usuario.setText(usuario);
-	}
 
-	
-
-	public void setearContraseña(String contrasena) {
-		lbl_contraseña.setText(contrasena);
-	}
 	
 	
 
@@ -74,9 +65,100 @@ public class Index extends JFrame {
 		model.addColumn("DNI");
 		model.addColumn("Rol");
 		
-		btnNewButton = new JButton("Volver");
-		btnNewButton.setBounds(84, 150, 187, 85);
-		btnNewButton.setIcon(null);
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(0, 0, 892, 506);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		lblNewLabel_3 = new JLabel("Bienvenido/a");
+		lblNewLabel_3.setBounds(107, 38, 178, 33);
+		panel.add(lblNewLabel_3);
+		lblNewLabel_3.setFont(new Font("KG Red Hands", Font.PLAIN, 25));
+		
+		btnNewButton = new JButton("Cerrar sesi\u00F3n");
+		btnNewButton.setBackground(new Color(255, 0, 0));
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 20));
+		btnNewButton.setBounds(688, 27, 162, 63);
+		panel.add(btnNewButton);
+		
+		lbl_usuario = new JLabel("Usuario");
+		lbl_usuario.setBounds(307, 38, 231, 33);
+		panel.add(lbl_usuario);
+		lbl_usuario.setForeground(new Color(38, 217, 65));
+		lbl_usuario.setFont(new Font("KG Red Hands", Font.PLAIN, 25));
+		
+		JButton btnNewButton_1 = new JButton("Depositar");
+		btnNewButton_1.setBackground(new Color(38, 217, 65));
+		btnNewButton_1.setForeground(new Color(255, 255, 255));
+		btnNewButton_1.setFont(new Font("Arial", Font.BOLD, 20));
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_1.setBounds(107, 180, 194, 63);
+		panel.add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("Tranferencia");
+		btnNewButton_2.setBackground(new Color(38, 217, 65));
+		btnNewButton_2.setForeground(new Color(255, 255, 255));
+		btnNewButton_2.setFont(new Font("Arial", Font.BOLD, 20));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_2.setBounds(107, 301, 194, 63);
+		panel.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("Consultar saldo");
+		btnNewButton_3.setBackground(new Color(38, 217, 65));
+		btnNewButton_3.setForeground(new Color(255, 255, 255));
+		btnNewButton_3.setFont(new Font("Arial", Font.BOLD, 20));
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_3.setBounds(374, 301, 184, 63);
+		panel.add(btnNewButton_3);
+		
+		JButton btnNewButton_4 = new JButton("Extraer");
+		btnNewButton_4.setBackground(new Color(38, 217, 65));
+		btnNewButton_4.setFont(new Font("Arial", Font.BOLD, 20));
+		btnNewButton_4.setForeground(new Color(255, 255, 255));
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_4.setBounds(374, 180, 184, 63);
+		panel.add(btnNewButton_4);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(Index.class.getResource("/Iconos/city.png")));
+		lblNewLabel.setBounds(640, 0, 262, 506);
+		panel.add(lblNewLabel);
+		
+		JButton btnNewButton_5 = new JButton("Ultimos movimientos");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnNewButton_5.setForeground(new Color(255, 255, 255));
+		btnNewButton_5.setBackground(new Color(38, 217, 65));
+		btnNewButton_5.setFont(new Font("Arial", Font.BOLD, 20));
+		btnNewButton_5.setBounds(222, 418, 240, 63);
+		panel.add(btnNewButton_5);
+		
+		JLabel lblNewLabel_1 = new JLabel("Seleccione que operaci\u00F3n desea realizar");
+		lblNewLabel_1.setFont(new Font("KG Red Hands", Font.PLAIN, 18));
+		lblNewLabel_1.setBounds(107, 100, 489, 27);
+		panel.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setIcon(new ImageIcon(Index.class.getResource("/Iconos/favicon.png")));
+		lblNewLabel_2.setBounds(29, 38, 45, 30);
+		panel.add(lblNewLabel_2);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -85,26 +167,6 @@ public class Index extends JFrame {
 				
 			}
 		});
-		contentPane.add(btnNewButton);
-		
-		lbl_usuario = new JLabel("Usuario");
-		lbl_usuario.setForeground(new Color(0, 0, 255));
-		lbl_usuario.setFont(new Font("KG Red Hands", Font.PLAIN, 25));
-		lbl_usuario.setBounds(449, 169, 231, 33);
-		contentPane.add(lbl_usuario);
-		
-		lbl_contraseña = new JLabel("Contrase\u00F1a");
-		lbl_contraseña.setBackground(Color.MAGENTA);
-		lbl_contraseña.setForeground(Color.MAGENTA);
-		lbl_contraseña.setFont(new Font("KG Red Hands", Font.PLAIN, 25));
-		lbl_contraseña.setBounds(449, 234, 162, 48);
-		contentPane.add(lbl_contraseña);
-		
-		lblNewLabel_3 = new JLabel("Bienvenido");
-		lblNewLabel_3.setFont(new Font("KG Red Hands", Font.PLAIN, 25));
-		lblNewLabel_3.setBounds(449, 97, 231, 33);
-		contentPane.add(lblNewLabel_3);
 
 	}
-
 }
