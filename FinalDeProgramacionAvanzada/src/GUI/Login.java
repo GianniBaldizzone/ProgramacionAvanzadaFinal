@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Controllers.Controller_Cuenta;
 import Controllers.Controller_DataBase;
 
 import javax.swing.JButton;
@@ -21,14 +22,15 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
+import javax.swing.JMenuBar;
 
 public class Login extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField_1;
 	
-	private String nombre;
-	private String contraseña;
+	private int numero_de_cuenta;
+	private int pin;
 	private JLabel lbl_error;
 	private JPasswordField textField;
 	private Controller_DataBase conexion;
@@ -36,23 +38,41 @@ public class Login extends JFrame {
 	
 	
 	private void ingresar() {
-		nombre = textField_1.getText();
-        contraseña = textField.getText();
-        
-        
-		if( nombre.isEmpty() ) {
-		
-			lbl_error.setVisible(true);
-        
-        
-    }else {
-    	dispose();
-        Index frame = new Index();
-        frame.setVisible(true);
-
-        frame.setearNombre(nombre);
-        frame.setearContraseña(contraseña);
-    }}
+	    conexion = new Controller_DataBase();
+	    Controller_Cuenta cuentaController = new Controller_Cuenta(conexion.conectar());
+	    
+	    // Leer valores de los JTextField
+	    String numeroCuentaTexto = textField_1.getText().trim(); // Trim para eliminar espacios en blanco
+	    String pinTexto = textField.getText().trim(); // Trim para eliminar espacios en blanco
+	    
+	    // Validar que los campos no estén vacíos
+	    if (numeroCuentaTexto.isEmpty() || pinTexto.isEmpty()) {
+	        JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos.");
+	        return; // Salir del método si los campos están vacíos
+	    }
+	    
+	    // Validar que los campos contengan solo números
+	    if (!numeroCuentaTexto.matches("\\d+") || !pinTexto.matches("\\d+")) {
+	        JOptionPane.showMessageDialog(null, "Por favor, ingrese solo números válidos.");
+	        return; // Salir del método si los campos no contienen solo números
+	    }
+	    
+	    // Convertir los valores de texto a int
+	    int numero_de_cuenta = Integer.parseInt(numeroCuentaTexto);
+	    int pin = Integer.parseInt(pinTexto);
+	   
+	    if (cuentaController.autenticar(numero_de_cuenta, pin)) {
+	        JOptionPane.showMessageDialog(null, "Autenticación exitosa !!!");
+	        // se cierra el Login y se abre el index con los datos de la cuenta
+	        dispose();
+	        Index frame = new Index();
+	        frame.setVisible(true);
+	        
+	    } else {
+	        JOptionPane.showMessageDialog(null, "Autenticación fallida, revise el número de cuenta o el PIN !!!");
+	    }
+	}
+    
 	/**
 	 * Launch the application.
 	 */
@@ -76,10 +96,6 @@ public class Login extends JFrame {
 	 */
 	public Login() {
 		
-		Controller_DataBase conexion = new Controller_DataBase();
-		conexion.conectar();
-         
-		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 902, 528);
 		contentPane = new JPanel();
@@ -95,7 +111,7 @@ public class Login extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-               ingresar();
+				ingresar();
 
 				
 			}

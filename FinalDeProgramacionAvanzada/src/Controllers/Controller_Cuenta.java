@@ -18,6 +18,28 @@ public class Controller_Cuenta {
 	        this.connection = connection;
 	    }
 	    
+	    public boolean autenticar(int numeroCuenta, int pin) {
+	        try {
+	            // Consulta para verificar la existencia de la cuenta
+	            String query = "SELECT COUNT(*) AS count FROM cuenta WHERE numero_cuenta = ? AND pin = ?";
+	            PreparedStatement statement = connection.prepareStatement(query);
+	            statement.setInt(1, numeroCuenta);
+	            statement.setInt(2, pin);
+	            ResultSet resultSet = statement.executeQuery();
+
+	            if (resultSet.next()) {
+	                int count = resultSet.getInt("count");
+	                return count > 0; // Si count es mayor que cero, la cuenta existe y la autenticación es exitosa
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	        return false; // Si hubo algún error o la cuenta no existe, retornamos false
+	    }
+	    
+	    
+	    
+	    
 	    public boolean altaCuenta(Cuenta cuenta) {
 	        try {
 	            String query = "INSERT INTO cuenta (numero_cuenta, saldo, pin, tipo_cuenta, usuario_id) VALUES (?, ?, ?, ?, ?)";
