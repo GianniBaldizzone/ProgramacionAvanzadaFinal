@@ -1,6 +1,7 @@
 package Controllers;
 
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
@@ -22,6 +23,17 @@ public class Controller_DataBase {
 	}
 	return con; 
 	}
-
+	 
+	public void desconectar() {
+	        try {
+	            if (con != null) {
+	                con.close();
+	                System.out.println("Desconexión de la base de datos exitosa");
+	            }
+	        } catch (SQLException e) {
+	            System.out.println("Error al cerrar la conexión a la base de datos");
+	            e.printStackTrace();
+	        }
+}
 }
 

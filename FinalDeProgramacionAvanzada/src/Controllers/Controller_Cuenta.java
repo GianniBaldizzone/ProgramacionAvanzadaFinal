@@ -1,11 +1,18 @@
 package Controllers;
 
 import java.sql.Connection;
+
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 import Modelo.Cuenta;
+import Modelo.CuentaAhorro;
+import Modelo.CuentaCorriente;
+import Modelo.TipoCuenta;
 
 public class Controller_Cuenta {
 	
@@ -122,5 +129,74 @@ public class Controller_Cuenta {
 	            return false;
 	        }
 	    }
+	    
+	    public void extraerSaldo(Cuenta cuenta, int dineroAExtraer) {
+	        try {
+	            // Verificar si se obtuvo la cuenta
+	            if (cuenta != null) {
+	                double nuevoSaldo = cuenta.getSaldo() - dineroAExtraer;
+	                
+	                // Verificar si el nuevo saldo es válido según el tipo de cuenta
+	                if (((cuenta.getTipoCuenta() == TipoCuenta.CUENTA_CORRIENTE) && nuevoSaldo >= -1000000) ||
+	                    (cuenta.getTipoCuenta() == TipoCuenta.CAJA_DE_AHORRO && nuevoSaldo >= 0)) {
+	                    
+	                    String query = "UPDATE cuenta SET saldo = ? WHERE numero_cuenta = ?";
+	                    PreparedStatement statement = connection.prepareStatement(query);
+	                    statement.setDouble(1, nuevoSaldo);
+	                    statement.setInt(2, cuenta.getNumeroCuenta());
+	                    
+	                    int rowsUpdated = statement.executeUpdate();
+	                    if (rowsUpdated > 0) {
+	                        JOptionPane.showMessageDialog(null, "Extracción exitosa");
+	                    } else {
+	                        JOptionPane.showMessageDialog(null, "Error al actualizar el saldo");
+	                    }
+	                } else {
+	                    JOptionPane.showMessageDialog(null, "Saldo insuficiente para realizar la extracción");
+	                }
+	            } else {
+	                JOptionPane.showMessageDialog(null, "No se encontró la cuenta");
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	        
+	        public Cuenta obtenerCuentaPorNumeroDeCuenta(int numeroDeCuenta) {
+	        	Cuenta cuenta = null;
+	            try {
+	                String query = "SELECT * FROM cuenta WHERE numero_cuenta = ?";
+	                PreparedStatement statement = connection.prepareStatement(query);
+	                statement.setInt(1, numeroDeCuenta);
+	                ResultSet resultSet = statement.executeQuery();
+
+	                if (resultSet.next()) {
+	                	
+	                	if(resultSet.getString("tipo_cuenta").equals("CAJA_DE_AHORRO")) {
+	                	cuenta = new CuentaAhorro();
+	                    cuenta.setId(resultSet.getInt("id"));
+	                    cuenta.setNumeroCuenta(resultSet.getInt("numero_cuenta"));
+	                    cuenta.setSaldo(resultSet.getDouble("saldo"));
+	                    cuenta.setPin(resultSet.getString("pin"));
+	                    cuenta.setTipoCuenta(TipoCuenta.CAJA_DE_AHORRO);
+	                    cuenta.setUsuarioId(resultSet.getInt("usuario_id"));}
+	                    
+	                }else {
+	                	
+	                	cuenta = new CuentaCorriente();
+	                    cuenta.setId(resultSet.getInt("id"));
+	                    cuenta.setNumeroCuenta(resultSet.getInt("numero_cuenta"));
+	                    cuenta.setSaldo(resultSet.getDouble("saldo"));
+	                    cuenta.setPin(resultSet.getString("pin"));
+	                    cuenta.setTipoCuenta(TipoCuenta.CUENTA_CORRIENTE);
+	                    cuenta.setUsuarioId(resultSet.getInt("usuario_id"));
+	                }
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	            return cuenta;
+	        }
 	}
+
 

@@ -17,6 +17,15 @@ public class Cuenta {
 	        this.tipoCuenta = tipoCuenta;
 	        this.usuarioId = usuarioId;
 	    }
+	    
+	    public Cuenta() {
+	        this.id = id;
+	        this.numeroCuenta = numeroCuenta;
+	        this.saldo = saldo;
+	        this.pin = pin;
+	        this.tipoCuenta = tipoCuenta;
+	        this.usuarioId = usuarioId;
+	    }
 
 	    // Getters y Setters
 	    public int getId() {
