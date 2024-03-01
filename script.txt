@@ -66,7 +66,6 @@ CREATE TABLE IF NOT EXISTS `transaccion` (
   `cuenta_id` INT NOT NULL,
   `monto` DOUBLE NOT NULL,
   `tipo` VARCHAR(45) NOT NULL,
-  `transaccioncol` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_transaccion_cuenta1`
     FOREIGN KEY (`cuenta_id`)
