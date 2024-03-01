@@ -13,8 +13,25 @@ import java.awt.Font;
 public class OperacionExitosa extends JFrame {
 
 	private JPanel contentPane;
-	JLabel valor;
-	JLabel operacion;
+	private String valor;
+	private String operacion;
+	
+
+	public String getValor() {
+		return valor;
+	}
+
+	public void setValor(String valor) {
+		this.valor = valor;
+	}
+
+	public String getOperacion() {
+		return operacion;
+	}
+
+	public void setOperacion(String operacion) {
+		this.operacion = operacion;
+	}
 
 	/**
 	 * Launch the application.
@@ -65,13 +82,15 @@ public class OperacionExitosa extends JFrame {
 		lblNewLabel_3.setBounds(167, 349, 41, 44);
 		contentPane.add(lblNewLabel_3);
 		
-		JLabel valor = new JLabel("Valor");
+		JLabel valor = new JLabel();
+		valor.setText(getValor());
 		valor.setForeground(new Color(47, 255, 17));
 		valor.setFont(new Font("Arial", Font.BOLD, 20));
 		valor.setBounds(381, 349, 113, 44);
 		contentPane.add(valor);
 		
-		JLabel operacion = new JLabel("Transacci\u00F3n:");
+		JLabel operacion = new JLabel();
+		operacion.setText(getOperacion());
 		operacion.setFont(new Font("Arial", Font.BOLD, 20));
 		operacion.setBounds(231, 358, 140, 27);
 		contentPane.add(operacion);

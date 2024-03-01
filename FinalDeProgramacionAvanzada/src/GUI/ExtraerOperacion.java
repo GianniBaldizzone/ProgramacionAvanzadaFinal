@@ -67,12 +67,12 @@ public class ExtraerOperacion extends JFrame {
 	                	
 	                	//se crea la transaccion correspondiente a la extraccion
 	                	controller_transaccion.generarTransaccion(transaccion);
-	                	
+	                	dispose();
 	                	OperacionExitosa frame = new OperacionExitosa();
 	                	frame.setVisible(true);
 	                	String saldotexto = String.valueOf(saldoAExtraer);
-	                	frame.valor.setText(saldotexto);
-	                	frame.operacion.setText(transaccion.getTipo().toString());
+	                	frame.setValor(saldotexto);
+	                	frame.setOperacion(transaccion.getTipo().toString());
 	                	
 	                } else {
 	                    JOptionPane.showMessageDialog(null, "El monto de extracción no puede exceder 2,000,000.");
