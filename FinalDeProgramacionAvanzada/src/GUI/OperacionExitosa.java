@@ -65,13 +65,13 @@ public class OperacionExitosa extends JFrame {
 		
 		  JLabel lblOperacion = new JLabel("Operación: " + operacion);
 		    lblOperacion.setFont(new Font("Arial", Font.BOLD, 20));
-		    lblOperacion.setBounds(231, 358, 201, 27);
+		    lblOperacion.setBounds(231, 358, 283, 27);
 		    contentPane.add(lblOperacion);
 
 		    JLabel lblValor = new JLabel("Valor: " + valor);
 		    lblValor.setForeground(new Color(47, 255, 17));
 		    lblValor.setFont(new Font("Arial", Font.BOLD, 20));
-		    lblValor.setBounds(231, 395, 152, 44);
+		    lblValor.setBounds(231, 395, 243, 44);
 		    contentPane.add(lblValor);
 	}
 
