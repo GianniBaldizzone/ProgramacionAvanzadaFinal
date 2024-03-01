@@ -1,4 +1,5 @@
 package Test;
+import GUI.Login;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -16,7 +17,7 @@ public class main {
 
 	public static void main(String[] args) {
 		
-		 Controller_DataBase conexion = new Controller_DataBase();
+		/*Controller_DataBase conexion = new Controller_DataBase();
 	    
 		// Crear una instancia del controlador
         Controller_Cuenta cuentaController = new Controller_Cuenta(conexion.conectar());
@@ -38,7 +39,10 @@ public class main {
     
         
         
-	
+	*/
+		
+		Login frame = new Login();
+		frame.setVisible(true);
 	
 	}}
        

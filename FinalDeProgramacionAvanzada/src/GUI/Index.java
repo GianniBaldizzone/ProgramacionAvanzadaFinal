@@ -23,6 +23,7 @@ public class Index extends JFrame {
 	private JPanel contentPane;
 	private JButton btnNewButton;
 	JLabel lbl_usuario;
+	int numeroDeCuenta;
 	private JLabel lblNewLabel_3;
 	
 	
@@ -128,8 +129,10 @@ public class Index extends JFrame {
 		btnNewButton_4.setForeground(new Color(255, 255, 255));
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
+				dispose();
+				ExtraerOperacion frame = new ExtraerOperacion();
+				frame.setVisible(true);
+				frame.numeroDeCuentaExtraer = numeroDeCuenta;
 				
 			}
 		});

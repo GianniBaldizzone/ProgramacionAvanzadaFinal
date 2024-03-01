@@ -14,12 +14,14 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
@@ -83,6 +85,7 @@ public class Login extends JFrame {
 	        
 	        // Asignar el nombre del usuario al lbl_usuario en el Index
 	        frame.lbl_usuario.setText(nombreUsuario);
+	        frame.numeroDeCuenta = numero_de_cuenta;
 	        
 	    } else {
 	        JOptionPane.showMessageDialog(null, "Autenticación fallida, revise el número de cuenta o el PIN !!!");
@@ -111,6 +114,20 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		
+		// Obtener el tamaño de la pantalla
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        
+        // Calcular la ubicación central para la ventana
+        int centerX = (screenSize.width - 902) / 2;
+        int centerY = (screenSize.height - 528) / 2;
+        
+        // Establecer la ubicación de la ventana
+        setLocation(centerX, centerY);
+        
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(centerX, centerY, 902, 528);
+
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 902, 528);
