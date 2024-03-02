@@ -65,7 +65,7 @@ public class TranferirOperacion extends JFrame {
 	    
 	    
 
-	    if (cuentaOrigen == null && cuentaDestino == null) {
+	    if (cuentaOrigen != null && cuentaDestino != null) { // Hay que revisar este condicional pincha aca
 	        // Verificar que se haya ingresado un valor en el textFieldcantidad
 	        String cantidadText = cantidad.getText();
 	        if (!cantidadText.isEmpty()) {
