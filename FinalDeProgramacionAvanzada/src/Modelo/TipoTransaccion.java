@@ -2,8 +2,12 @@ package Modelo;
 
 public enum TipoTransaccion {
 	
-	    TRANSFERIR,
+	    TRANSFENCIA_ORIGEN,
+	    TRANFERENCIA_DESTINO,
 	    EXTRAER,
-	    DEPOSITAR
+	    DEPOSITAR,
+	    CONSULTARSALDO,
+	    
+	    
 	
 }

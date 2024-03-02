@@ -227,6 +227,22 @@ public class Controller_Cuenta {
 	            }
 	            return cuenta;
 	        }
+	        
+	        
+	        public void transferirSaldo(Cuenta cuentaOrigen, Cuenta cuentaDestino, int montoTransferencia) {
+	            // Verificar si se obtuvo la cuenta origen y destino
+	            if (cuentaOrigen != null && cuentaDestino != null) {
+	                // Extraer saldo de la cuenta origen
+	                extraerSaldo(cuentaOrigen, montoTransferencia);
+	                
+	                // Depositar saldo en la cuenta destino
+	                depositarSaldo(cuentaDestino, montoTransferencia);
+	                
+	                JOptionPane.showMessageDialog(null, "Transferencia exitosa");
+	            } else {
+	                JOptionPane.showMessageDialog(null, "No se encontró una de las cuentas");
+	            }
+	        }
 	}
 
 

@@ -9,6 +9,7 @@ import javax.swing.table.DefaultTableModel;
 
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -112,6 +113,12 @@ public class Index extends JFrame {
 		btnNewButton_2.setFont(new Font("Arial", Font.BOLD, 20));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				dispose();
+				TranferirOperacion frame = new TranferirOperacion();
+				frame.setVisible(true);
+				frame.numeroDeCuentaTranferir = numeroDeCuenta;
+				
 			}
 		});
 		btnNewButton_2.setBounds(107, 301, 194, 63);

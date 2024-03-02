@@ -34,7 +34,7 @@ public class TranferirOperacion extends JFrame {
 	int numeroDeCuentaTranferir;
 
 	
-	public void transferir(int numeroCuentaOrigen, int numeroCuentaDestino) {
+	public void transferir(int numeroCuentaOrigen) {
 	    conexion = new Controller_DataBase();
 	    Controller_Cuenta controller_cuenta = new Controller_Cuenta(conexion.conectar());
 	    Controller_Transaccion controller_transaccion = new Controller_Transaccion(conexion.conectar());
@@ -55,12 +55,17 @@ public class TranferirOperacion extends JFrame {
 
 	    int numeroCuentaOrigen1 = Integer.parseInt(numeroDeCuentaTranferirString);
 	    int numeroCuentaDestino1 = Integer.parseInt(numeroDeCuentaDestino.getText());
+	    System.out.println(numeroCuentaOrigen1);
+	    System.out.println(numeroCuentaDestino1);
+	    System.out.println(cantidad.getText());
 
 	    // Obtener cuentas de origen y destino
 	    Cuenta cuentaOrigen = controller_cuenta.obtenerCuentaPorNumeroDeCuenta(numeroCuentaOrigen1);
 	    Cuenta cuentaDestino = controller_cuenta.obtenerCuentaPorNumeroDeCuenta(numeroCuentaDestino1);
+	    
+	    
 
-	    if (cuentaOrigen != null && cuentaDestino != null) {
+	    if (cuentaOrigen == null && cuentaDestino == null) {
 	        // Verificar que se haya ingresado un valor en el textFieldcantidad
 	        String cantidadText = cantidad.getText();
 	        if (!cantidadText.isEmpty()) {
@@ -76,20 +81,36 @@ public class TranferirOperacion extends JFrame {
 	                    // Depositar saldo en la cuenta de destino
 	                    controller_cuenta.depositarSaldo(cuentaDestino, montoTransferencia);
 
-	                    // Crear transacción de transferencia
-	                    Transaccion transaccion = new Transaccion();
-	                    transaccion.setMonto(montoTransferencia);
-	                    transaccion.setCuentaId(cuentaOrigen.getId()); // Usar cuenta origen para identificar la transacción
-	                    transaccion.setTipo(TipoTransaccion.TRANSFERIR);
-
-	                    // Generar transacción
-	                    controller_transaccion.generarTransaccion(transaccion);
+	                    // Crear transacción de transferencia origen
+	                    Transaccion transaccionOrigen = new Transaccion();
+	                    transaccionOrigen.setMonto(montoTransferencia);
+	                    transaccionOrigen.setCuentaId(cuentaOrigen.getId()); // Usar cuenta origen para identificar la transacción
+	                    transaccionOrigen.setTipo(TipoTransaccion.TRANSFENCIA_ORIGEN);
+	                    // Generar transacción ORIGEN
+	                    controller_transaccion.generarTransaccion(transaccionOrigen);
+	                    
+	                    
+	                    // Crear transacción de transferencia origen
+	                    Transaccion transaccionDestino = new Transaccion();
+	                    transaccionDestino.setMonto(montoTransferencia);
+	                    transaccionDestino.setCuentaId(cuentaOrigen.getId()); // Usar cuenta origen para identificar la transacción
+	                    transaccionDestino.setTipo(TipoTransaccion.TRANFERENCIA_DESTINO);
+	                    // Generar transacción ORIGEN
+	                    controller_transaccion.generarTransaccion(transaccionDestino);
+	                    
+	                    
+	                    
+	                    
 
 	                    // Mostrar mensaje de éxito
 	                    JOptionPane.showMessageDialog(null, "Transferencia exitosa");
 
 	                    // Cerrar la ventana actual (si es necesario)
 	                    dispose();
+	                    
+	                    
+	                    
+	                    
 	                } else {
 	                    JOptionPane.showMessageDialog(null, "El monto de transferencia debe ser un valor entre 1 y 2,000,000.");
 	                }
@@ -168,6 +189,7 @@ public class TranferirOperacion extends JFrame {
 		JButton btnTranferir = new JButton("Tranferir");
 		btnTranferir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				transferir(numeroDeCuentaTranferir);
 			}
 		});
 		btnTranferir.setForeground(Color.WHITE);
@@ -181,7 +203,7 @@ public class TranferirOperacion extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 		
 				// se cancela la operación
-				OperacionCancelada frame = new OperacionCancelada(TipoTransaccion.TRANSFERIR.toString());
+				OperacionCancelada frame = new OperacionCancelada(TipoTransaccion.TRANSFENCIA_ORIGEN.toString());
                 frame.numeroDeCuentaOperacionCancelada = numeroDeCuentaTranferir;
                 frame.setVisible(true);
                 dispose();
