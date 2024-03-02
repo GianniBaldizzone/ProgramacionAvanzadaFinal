@@ -48,6 +48,9 @@ public class Login extends JFrame {
 	    String numeroCuentaTexto = txtIngreseNumeroDe.getText().trim(); // Trim para eliminar espacios en blanco
 	    String pinTexto = textField.getText().trim(); // Trim para eliminar espacios en blanco
 	    
+	    
+	   
+	    
 	    // Validar que los campos no estén vacíos
 	    if (numeroCuentaTexto.isEmpty() || pinTexto.isEmpty()) {
 	        JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos.");
@@ -59,6 +62,12 @@ public class Login extends JFrame {
 	        JOptionPane.showMessageDialog(null, "Por favor, ingrese solo números válidos.");
 	        return; // Salir del método si los campos no contienen solo números
 	    }
+	    
+	    if (numeroCuentaTexto.length() > 10 || pinTexto.length() > 10) {
+	        JOptionPane.showMessageDialog(null, "Has ingresado una cantidad incorrecta para estos campos, prueba nuevamente.");
+	        return; // Salir del método si los campos contienen más de 10 dígitos
+	    }
+
 	    
 	    // Convertir los valores de texto a int
 	    int numero_de_cuenta = Integer.parseInt(numeroCuentaTexto);

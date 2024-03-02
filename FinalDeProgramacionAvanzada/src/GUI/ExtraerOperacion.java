@@ -51,29 +51,35 @@ public class ExtraerOperacion extends JFrame {
 	        if (!cantidadText.isEmpty()) {
 	            // Verificar si el valor ingresado es un número entero positivo
 	            if (cantidadText.matches("\\d+")) {
-	                int saldoAExtraer = Integer.parseInt(cantidadText);
-	                // Verificar si el saldo a extraer no excede el límite de 1,000,000
-	                if (saldoAExtraer <= 2000000) {
-	                    // Verificar si la cuenta es de tipo CAJA_DE_AHORRO o CUENTA_CORRIENTE
-	                    // Tu lógica de verificación y extracción aquí
+	               
+	                
+	                // Verificar si la longitud de saldoAExtraer no excede 10 dígitos
+	                if (cantidadText.length() <= 10) {
+	                    // Verificar si el saldo a extraer no excede el límite de 1,000,000
 	                	
-	                	controller_cuenta.extraerSaldo(cuenta, saldoAExtraer);
-	                	transaccion = new Extraer();
-	                	transaccion.setMonto(saldoAExtraer);
+	                	 int saldoAExtraer = Integer.parseInt(cantidadText);
 	                	
-	                	transaccion.setCuentaId(cuenta.getId());
-	                	transaccion.setTipo(TipoTransaccion.EXTRAER);
-	                	
-	                	
-	                	//se crea la transaccion correspondiente a la extraccion
-	                	controller_transaccion.generarTransaccion(transaccion);
-	                	String saldotexto = String.valueOf(saldoAExtraer);
-	                	OperacionExitosa frame = new OperacionExitosa(saldotexto, transaccion.getTipo().toString());
-	                	frame.setVisible(true);
-	                	dispose();
-	                	
+	                    if (saldoAExtraer <= 2000000) {
+	                        // Verificar si la cuenta es de tipo CAJA_DE_AHORRO o CUENTA_CORRIENTE
+	                        // Tu lógica de verificación y extracción aquí
+	                        controller_cuenta.extraerSaldo(cuenta, saldoAExtraer);
+	                        transaccion = new Extraer();
+	                        transaccion.setMonto(saldoAExtraer);
+	                        transaccion.setCuentaId(cuenta.getId());
+	                        transaccion.setTipo(TipoTransaccion.EXTRAER);
+	                        
+	                        // Se crea la transacción correspondiente a la extracción
+	                        controller_transaccion.generarTransaccion(transaccion);
+	                        String saldotexto = String.valueOf(saldoAExtraer);
+	                        OperacionExitosa frame = new OperacionExitosa(saldotexto, transaccion.getTipo().toString());
+	                        frame.setVisible(true);
+	                        dispose();
+	                        
+	                    } else {
+	                        JOptionPane.showMessageDialog(null, "El monto de extracción no puede exceder 2,000,000.");
+	                    }
 	                } else {
-	                    JOptionPane.showMessageDialog(null, "El monto de extracción no puede exceder 2,000,000.");
+	                    JOptionPane.showMessageDialog(null, "La longitud del saldo a extraer no puede exceder 10 dígitos.");
 	                }
 	            } else {
 	                JOptionPane.showMessageDialog(null, "Por favor ingrese un valor numérico entero válido.");
