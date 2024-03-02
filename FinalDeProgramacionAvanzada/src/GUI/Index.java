@@ -39,8 +39,8 @@ public class Index extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Index frame = new Index();
-					frame.setVisible(true);
+					Index index = new Index();
+					index.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

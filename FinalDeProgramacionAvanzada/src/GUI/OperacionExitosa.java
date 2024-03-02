@@ -5,17 +5,25 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controllers.Controller_DataBase;
+import Controllers.Controller_Usuario;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class OperacionExitosa extends JFrame {
 
 	private JPanel contentPane;
     private String valor;
     private String operacion;
+    int numeroDeCuentaOperacionExitosa;
+    private Controller_DataBase conexion;
 	
 	
 	
@@ -69,13 +77,35 @@ public class OperacionExitosa extends JFrame {
 		    lblOperacion.setBounds(196, 358, 283, 27);
 		    contentPane.add(lblOperacion);
 
-		    JLabel lblValor = new JLabel("Valor: <dynamic>$");
+		    JLabel lblValor = new JLabel("Valor: "+valor + " $");
 		    lblValor.setForeground(new Color(47, 255, 17));
 		    lblValor.setFont(new Font("Arial", Font.BOLD, 20));
 		    lblValor.setBounds(196, 384, 243, 44);
 		    contentPane.add(lblValor);
 		    
 		    JButton btnVolver = new JButton("Volver");
+		    btnVolver.addActionListener(new ActionListener() {
+		    	public void actionPerformed(ActionEvent e) {
+		    		
+		    		dispose();
+		    		Index frame = new Index();
+		    		frame.setVisible(true);
+		    		conexion = new Controller_DataBase();
+		    		Controller_Usuario usuariocontroller = new Controller_Usuario(conexion.conectar());
+			        String nombreUsuario = null;
+					try {
+						nombreUsuario = usuariocontroller.obtenerNombreUsuario(numeroDeCuentaOperacionExitosa);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+			        
+		    		
+		    		frame.lbl_usuario.setText(nombreUsuario);
+			        frame.numeroDeCuenta = numeroDeCuentaOperacionExitosa;
+		    		
+		    	}
+		    });
 		    btnVolver.setForeground(Color.WHITE);
 		    btnVolver.setFont(new Font("Arial", Font.PLAIN, 20));
 		    btnVolver.setBackground(Color.RED);

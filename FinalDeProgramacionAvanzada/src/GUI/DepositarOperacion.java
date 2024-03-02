@@ -69,6 +69,7 @@ public class DepositarOperacion extends JFrame {
 	                        controller_transaccion.generarTransaccion(transaccion);
 	                        String saldotexto = String.valueOf(saldoADepositar);
 	                        OperacionExitosa frame = new OperacionExitosa(saldotexto, transaccion.getTipo().toString());
+	                        frame.numeroDeCuentaOperacionExitosa = numeroDeCuentaDepositar;
 	                        frame.setVisible(true);
 	                        dispose();
 	                        

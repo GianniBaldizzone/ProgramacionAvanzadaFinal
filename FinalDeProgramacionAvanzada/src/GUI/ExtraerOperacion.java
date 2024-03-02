@@ -72,6 +72,7 @@ public class ExtraerOperacion extends JFrame {
 	                        controller_transaccion.generarTransaccion(transaccion);
 	                        String saldotexto = String.valueOf(saldoAExtraer);
 	                        OperacionExitosa frame = new OperacionExitosa(saldotexto, transaccion.getTipo().toString());
+	                        frame.numeroDeCuentaOperacionExitosa = numeroDeCuentaExtraer;
 	                        frame.setVisible(true);
 	                        dispose();
 	                        
