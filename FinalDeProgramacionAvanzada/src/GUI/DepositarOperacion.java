@@ -112,15 +112,11 @@ public class DepositarOperacion extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(DepositarOperacion.class.getResource("/Iconos/city.png")));
-		lblNewLabel.setBounds(603, 0, 183, 500);
-		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Seleccione el monto que desea depositar");
 		lblNewLabel_1.setFont(new Font("KG Red Hands", Font.PLAIN, 18));
@@ -143,6 +139,42 @@ public class DepositarOperacion extends JFrame {
 		cantidad = new JTextField();
 		cantidad.setBounds(196, 177, 191, 40);
 		contentPane.add(cantidad);
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				//cancela la operacion
+				OperacionCancelada frame = new OperacionCancelada(TipoTransaccion.EXTRAER.toString());
+                frame.numeroDeCuentaOperacionCancelada = numeroDeCuentaDepositar;
+                frame.setVisible(true);
+                dispose();
+				
+				
+			}
+		});
+		btnCancelar.setForeground(Color.WHITE);
+		btnCancelar.setFont(new Font("Arial", Font.PLAIN, 20));
+		btnCancelar.setBackground(Color.RED);
+		btnCancelar.setBounds(614, 22, 162, 63);
+		contentPane.add(btnCancelar);
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setIcon(new ImageIcon(DepositarOperacion.class.getResource("/Iconos/favicon.png")));
+		lblNewLabel_2.setBounds(39, 38, 45, 30);
+		contentPane.add(lblNewLabel_2);
+		
+		JButton btnCancelar_1 = new JButton("Cancelar");
+		btnCancelar_1.setForeground(Color.WHITE);
+		btnCancelar_1.setFont(new Font("Arial", Font.PLAIN, 20));
+		btnCancelar_1.setBackground(Color.RED);
+		btnCancelar_1.setBounds(614, 22, 162, 63);
+		contentPane.add(btnCancelar_1);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(DepositarOperacion.class.getResource("/Iconos/city.png")));
+		lblNewLabel.setBounds(603, 0, 183, 500);
+		contentPane.add(lblNewLabel);
 		
 		
 	}

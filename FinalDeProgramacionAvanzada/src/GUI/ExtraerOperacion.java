@@ -143,14 +143,32 @@ public class ExtraerOperacion extends JFrame {
 		btnNewButton.setBounds(222, 265, 105, 48);
 		contentPane.add(btnNewButton);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(ExtraerOperacion.class.getResource("/Iconos/city.png")));
-		lblNewLabel.setBounds(596, 0, 200, 463);
-		contentPane.add(lblNewLabel);
-		
 		textFieldcantidad = new JTextField();
 		textFieldcantidad.setBounds(185, 177, 184, 37);
 		contentPane.add(textFieldcantidad);
 		textFieldcantidad.setColumns(10);
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				// se cancela la operación
+				OperacionCancelada frame = new OperacionCancelada(TipoTransaccion.EXTRAER.toString());
+                frame.numeroDeCuentaOperacionCancelada = numeroDeCuentaExtraer;
+                frame.setVisible(true);
+                dispose();
+				
+			}
+		});
+		btnCancelar.setForeground(Color.WHITE);
+		btnCancelar.setFont(new Font("Arial", Font.PLAIN, 20));
+		btnCancelar.setBackground(Color.RED);
+		btnCancelar.setBounds(614, 22, 162, 63);
+		contentPane.add(btnCancelar);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(ExtraerOperacion.class.getResource("/Iconos/city.png")));
+		lblNewLabel.setBounds(596, 0, 200, 463);
+		contentPane.add(lblNewLabel);
 	}
 }
