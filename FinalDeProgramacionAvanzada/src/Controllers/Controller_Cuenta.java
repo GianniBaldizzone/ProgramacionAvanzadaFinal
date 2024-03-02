@@ -161,6 +161,36 @@ public class Controller_Cuenta {
 	            e.printStackTrace();
 	        }
 	    }
+	    
+	    public void depositarSaldo(Cuenta cuenta, int dineroADepositar) {
+	        try {
+	            // Verificar si se obtuvo la cuenta
+	            if (cuenta != null) {
+	                double nuevoSaldo = cuenta.getSaldo() + dineroADepositar;
+	                
+	                // Verificar si el monto a depositar no excede el límite de 2,000,000
+	                if (dineroADepositar <= 2000000) {
+	                    String query = "UPDATE cuenta SET saldo = ? WHERE numero_cuenta = ?";
+	                    PreparedStatement statement = connection.prepareStatement(query);
+	                    statement.setDouble(1, nuevoSaldo);
+	                    statement.setInt(2, cuenta.getNumeroCuenta());
+	                    
+	                    int rowsUpdated = statement.executeUpdate();
+	                    if (rowsUpdated > 0) {
+	                        JOptionPane.showMessageDialog(null, "Deposito exitoso");
+	                    } else {
+	                        JOptionPane.showMessageDialog(null, "Error al actualizar el saldo");
+	                    }
+	                } else {
+	                    JOptionPane.showMessageDialog(null, "No se puede depositar más de 2,000,000.");
+	                }
+	            } else {
+	                JOptionPane.showMessageDialog(null, "No se encontró la cuenta");
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
 
 	        
 	        public Cuenta obtenerCuentaPorNumeroDeCuenta(int numeroDeCuenta) {

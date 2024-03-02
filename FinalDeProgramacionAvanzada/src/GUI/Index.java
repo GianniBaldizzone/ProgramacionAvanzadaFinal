@@ -96,6 +96,11 @@ public class Index extends JFrame {
 		btnNewButton_1.setFont(new Font("Arial", Font.BOLD, 20));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
+				DepositarOperacion frame = new DepositarOperacion();
+				frame.setVisible(true);
+				frame.numeroDeCuentaDepositar = numeroDeCuenta;
+				
 			}
 		});
 		btnNewButton_1.setBounds(107, 180, 194, 63);
