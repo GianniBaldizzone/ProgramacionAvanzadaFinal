@@ -1,0 +1,14 @@
+Anotaciones:
+
+- GUI > ExtraerOperacion : no deberian existir las validaciones acá, sino en el controller_transaccion. O en su defecto la clase hija.
+
+- Pin tiene que tener 4 digitos en clase login, no 10. pinTexto.length() > 4
+
+-En el GUI, DepositarOperacion no deberian existir las validaciones acá, sino en el controller_transaccion. 
+
+-En DepositarOperacion 
+// Verificar si el saldo a extraer no excede el l�mite de 1,000,000
+	                	
+	                	 int saldoADepositar = Integer.parseInt(cantidadText);
+	                	
+	                    if (saldoADepositar <= 2000000) {
