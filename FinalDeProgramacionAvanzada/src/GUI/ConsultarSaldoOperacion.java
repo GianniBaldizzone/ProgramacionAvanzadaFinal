@@ -87,7 +87,7 @@ public class ConsultarSaldoOperacion extends JFrame {
         btnCancelar.setForeground(Color.WHITE);
         btnCancelar.setFont(new Font("Arial", Font.PLAIN, 20));
         btnCancelar.setBackground(new Color(0, 221, 0));
-        btnCancelar.setBounds(552, 108, 181, 63);
+        btnCancelar.setBounds(527, 108, 229, 63);
         contentPane.add(btnCancelar);
 
         conexion = new Controller_DataBase();
@@ -113,7 +113,7 @@ public class ConsultarSaldoOperacion extends JFrame {
         btnCerraSesion.setForeground(Color.WHITE);
         btnCerraSesion.setFont(new Font("Arial", Font.PLAIN, 20));
         btnCerraSesion.setBackground(Color.RED);
-        btnCerraSesion.setBounds(552, 23, 181, 63);
+        btnCerraSesion.setBounds(527, 23, 229, 63);
         contentPane.add(btnCerraSesion);
         
                 JLabel lblNewLabel = new JLabel("");

@@ -15,3 +15,12 @@ Anotaciones:
 
 
 - Falta agregar la funcionalidad para modificar el pin
+
+
+- Validar extracciones y depositos de 0$
+
+- Validar tranferencias a la misma
+
+-Cambiar contraseña por la misma
+
+-Cambiar el pin modificar el texto

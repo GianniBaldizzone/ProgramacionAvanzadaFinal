@@ -23,14 +23,14 @@ public class main {
         Controller_Cuenta cuentaController = new Controller_Cuenta(conexion.conectar());
         
         // Crear un objeto de cuenta para agregar
-        Cuenta cuentaahorro = new CuentaAhorro(0, 123456789, 1000.0, "1234", 1);
-        Cuenta cuentacorriente = new CuentaCorriente(0, 123456789, 1000.0, "1234", 1);
+        Cuenta cuentaahorro = new CuentaAhorro(0, 123456789, 1000.0, "2222", 2);
+        Cuenta cuentacorriente = new CuentaCorriente(0, 123456789, 1000.0, "2222", 2);
         
         // Probar el método altaCuenta
      
 
             // Prueba de alta de cuenta
-            boolean altaExitosa = cuentaController.altaCuenta(cuentacorriente);
+            boolean altaExitosa = cuentaController.altaCuenta(cuentaahorro);
             if (altaExitosa) {
                 System.out.println("Se ha agregado la cuenta correctamente.");
             } else {
@@ -38,8 +38,8 @@ public class main {
             }
     
         
-        
-	*/
+        */
+	
 		
 		Login frame = new Login();
 		frame.setVisible(true);
