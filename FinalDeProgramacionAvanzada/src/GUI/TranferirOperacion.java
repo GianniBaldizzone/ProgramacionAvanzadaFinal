@@ -51,13 +51,13 @@ public class TranferirOperacion extends JFrame {
 	    }
 
 	    // Verificar si los valores ingresados son números enteros
-	    if (!cantidad.getText().matches("\\d+") && numeroDeCuentaDestino.getText().matches("\\d+")) {
+	    if (!cantidad.getText().matches("\\d+") || !numeroDeCuentaDestino.getText().matches("\\d+")) {
 	        JOptionPane.showMessageDialog(null, "Por favor ingrese un valor numérico válido para ambos campos.");
 	        return;
 	    }
 
 	    // Verificar si los valores ingresados no superan los 10 dígitos
-	    if (!cantidad.getText().matches("\\d{1,10}") || !numeroDeCuentaDestino.getText().matches("\\d{1,10}")) {
+	    if (cantidad.getText().length() > 10 || numeroDeCuentaDestino.getText().length() > 10) {
 	        JOptionPane.showMessageDialog(null, "El número de cuenta destino y el monto de transferencia deben tener hasta 10 dígitos.");
 	        return;
 	    }
@@ -122,7 +122,7 @@ public class TranferirOperacion extends JFrame {
 	            JOptionPane.showMessageDialog(null, "El monto de transferencia debe ser un valor entre 1 y 2,000,000.");
 	        }
 	    } else {
-	        JOptionPane.showMessageDialog(null, "Una de las cuentas no se encontró.");
+	        JOptionPane.showMessageDialog(null, "La cuenta destino no se encontro.");
 	    }
 	}
 
