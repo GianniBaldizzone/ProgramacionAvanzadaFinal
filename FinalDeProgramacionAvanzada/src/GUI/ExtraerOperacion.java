@@ -62,20 +62,26 @@ public class ExtraerOperacion extends JFrame {
 	                    if (saldoAExtraer <= 2000000) {
 	                        
 	                    	// Verificar si la cuenta es de tipo CAJA_DE_AHORRO o CUENTA_CORRIENTE
+	                        if(controller_cuenta.extraerSaldo(cuenta, saldoAExtraer)) {
+	                        	 transaccion = new Extraer();
+	 	                        transaccion.setMonto(saldoAExtraer);
+	 	                        transaccion.setCuentaId(cuenta.getId());
+	 	                        transaccion.setTipo(TipoTransaccion.EXTRAER);
+	 	                        
+	 	                        // Se crea la transacción correspondiente a la extracción
+	 	                        controller_transaccion.generarTransaccion(transaccion);
+	 	                        String saldotexto = String.valueOf(saldoAExtraer);
+	 	                        OperacionExitosa frame = new OperacionExitosa(saldotexto, transaccion.getTipo().toString());
+	 	                        frame.numeroDeCuentaOperacionExitosa = numeroDeCuentaExtraer;
+	 	                        frame.setVisible(true);
+	 	                        dispose();
+	                        }
 	                        
-	                        controller_cuenta.extraerSaldo(cuenta, saldoAExtraer);
-	                        transaccion = new Extraer();
-	                        transaccion.setMonto(saldoAExtraer);
-	                        transaccion.setCuentaId(cuenta.getId());
-	                        transaccion.setTipo(TipoTransaccion.EXTRAER);
 	                        
-	                        // Se crea la transacción correspondiente a la extracción
-	                        controller_transaccion.generarTransaccion(transaccion);
-	                        String saldotexto = String.valueOf(saldoAExtraer);
-	                        OperacionExitosa frame = new OperacionExitosa(saldotexto, transaccion.getTipo().toString());
-	                        frame.numeroDeCuentaOperacionExitosa = numeroDeCuentaExtraer;
-	                        frame.setVisible(true);
-	                        dispose();
+	                        
+	                        
+	                        
+	                       
 	                        
 	                    } else {
 	                        JOptionPane.showMessageDialog(null, "El monto de extracción no puede exceder 2,000,000.");

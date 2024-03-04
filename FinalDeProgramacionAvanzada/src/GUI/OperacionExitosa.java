@@ -84,7 +84,7 @@ public class OperacionExitosa extends JFrame {
 		    lblValor.setBounds(196, 384, 243, 44);
 		    contentPane.add(lblValor);
 		    
-		    JButton btnVolver = new JButton("Volver");
+		    JButton btnVolver = new JButton("Seguir operando");
 		    btnVolver.addActionListener(new ActionListener() {
 		    	public void actionPerformed(ActionEvent e) {
 		    		
@@ -109,13 +109,30 @@ public class OperacionExitosa extends JFrame {
 		    });
 		    btnVolver.setForeground(Color.WHITE);
 		    btnVolver.setFont(new Font("Arial", Font.PLAIN, 20));
-		    btnVolver.setBackground(Color.RED);
-		    btnVolver.setBounds(614, 21, 162, 63);
+		    btnVolver.setBackground(new Color(0, 221, 0));
+		    btnVolver.setBounds(580, 117, 196, 63);
 		    contentPane.add(btnVolver);
+		    
+		    JButton btnCerraSesion_1 = new JButton("Cerra sesion");
+		    btnCerraSesion_1.addActionListener(new ActionListener() {
+		    	public void actionPerformed(ActionEvent e) {
+		    		
+		    		dispose();
+					Login frame = new Login();
+					frame.setVisible(true);
+	        		
+					
+		    	}
+		    });
+		    btnCerraSesion_1.setForeground(Color.WHITE);
+		    btnCerraSesion_1.setFont(new Font("Arial", Font.PLAIN, 20));
+		    btnCerraSesion_1.setBackground(Color.RED);
+		    btnCerraSesion_1.setBounds(580, 26, 196, 63);
+		    contentPane.add(btnCerraSesion_1);
 		    
 		    JLabel lblNewLabel = new JLabel("");
 		    lblNewLabel.setIcon(new ImageIcon(OperacionExitosa.class.getResource("/Iconos/city.png")));
-		    lblNewLabel.setBounds(600, 0, 196, 463);
+		    lblNewLabel.setBounds(541, 0, 255, 463);
 		    contentPane.add(lblNewLabel);
 	}
 

@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import Controllers.Controller_Cuenta;
 import Controllers.Controller_DataBase;
 import Controllers.Controller_Transaccion;
+import Controllers.Controller_Usuario;
 import Modelo.TipoTransaccion;
 
 import javax.swing.JLabel;
@@ -49,7 +50,7 @@ public class ConsultarSaldoOperacion extends JFrame {
 
         JLabel lblNewLabel_1 = new JLabel("Saldo disponible en cuenta");
         lblNewLabel_1.setFont(new Font("KG Red Hands", Font.PLAIN, 18));
-        lblNewLabel_1.setBounds(101, 97, 489, 27);
+        lblNewLabel_1.setBounds(99, 112, 489, 27);
         contentPane.add(lblNewLabel_1);
 
         JLabel lblNewLabel_2_1 = new JLabel("");
@@ -59,29 +60,35 @@ public class ConsultarSaldoOperacion extends JFrame {
 
         JLabel Saldo = new JLabel("Saldo");
         Saldo.setFont(new Font("Arial", Font.BOLD, 25));
-        Saldo.setBounds(159, 166, 156, 49);
+        Saldo.setBounds(159, 206, 156, 49);
         contentPane.add(Saldo);
 
-        JButton btnCancelar = new JButton("Cancelar");
+        JButton btnCancelar = new JButton("Seguir operando");
         btnCancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	// se cancela la operación
-				OperacionCancelada frame = new OperacionCancelada(TipoTransaccion.CONSULTAR_SALDO.toString());
-                frame.numeroDeCuentaOperacionCancelada = numeroDeCuentaConsultarSaldo;
-                frame.setVisible(true);
-                dispose();
+            	dispose();
+	    		Index frame = new Index();
+	    		frame.setVisible(true);
+	    		conexion = new Controller_DataBase();
+	    		Controller_Usuario usuariocontroller = new Controller_Usuario(conexion.conectar());
+		        String nombreUsuario = null;
+				try {
+					nombreUsuario = usuariocontroller.obtenerNombreUsuario(numeroDeCuentaConsultarSaldo);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+		        
+	    		
+	    		frame.lbl_usuario.setText(nombreUsuario);
+		        frame.numeroDeCuenta = numeroDeCuentaConsultarSaldo;
             }
         });
         btnCancelar.setForeground(Color.WHITE);
         btnCancelar.setFont(new Font("Arial", Font.PLAIN, 20));
-        btnCancelar.setBackground(Color.RED);
-        btnCancelar.setBounds(570, 35, 162, 63);
+        btnCancelar.setBackground(new Color(0, 221, 0));
+        btnCancelar.setBounds(552, 108, 181, 63);
         contentPane.add(btnCancelar);
-
-        JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setIcon(new ImageIcon(ConsultarSaldoOperacion.class.getResource("/Iconos/city.png")));
-        lblNewLabel.setBounds(500, 0, 296, 477);
-        contentPane.add(lblNewLabel);
 
         conexion = new Controller_DataBase();
         controllerCuenta = new Controller_Cuenta(conexion.conectar());
@@ -91,23 +98,28 @@ public class ConsultarSaldoOperacion extends JFrame {
         System.out.println(numeroDeCuentaConsultarSaldo);
         double saldo = controllerCuenta.consultarSaldo(numeroDeCuentaConsultarSaldo);
         Saldo.setText("$" + saldo);
-
-        JButton btnConfirmar = new JButton("Confirmar");
-        btnConfirmar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Aquí puedes agregar código para ir a la operación exitosa
-                OperacionExitosa frame = new OperacionExitosa(String.valueOf(saldo), "Consulta de Saldo");
-                frame.numeroDeCuentaOperacionExitosa = numeroDeCuentaConsultarSaldo;
-                frame.setVisible(true);
-                dispose();
-                // Cierra este JFrame después de abrir la operación exitosa
-            }
+        
+        JButton btnCerraSesion = new JButton("Cerra sesion");
+        btnCerraSesion.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		
+        		dispose();
+				Login frame = new Login();
+				frame.setVisible(true);
+        		
+        	}
         });
-        btnConfirmar.setForeground(Color.WHITE);
-        btnConfirmar.setFont(new Font("Arial", Font.BOLD, 16));
-        btnConfirmar.setBackground(new Color(0, 255, 0));
-        btnConfirmar.setBounds(175, 258, 123, 42);
-        contentPane.add(btnConfirmar);
+        btnCerraSesion.setForeground(Color.WHITE);
+        btnCerraSesion.setFont(new Font("Arial", Font.PLAIN, 20));
+        btnCerraSesion.setBackground(Color.RED);
+        btnCerraSesion.setBounds(552, 23, 181, 63);
+        contentPane.add(btnCerraSesion);
+        
+                JLabel lblNewLabel = new JLabel("");
+                lblNewLabel.setIcon(new ImageIcon(ConsultarSaldoOperacion.class.getResource("/Iconos/city.png")));
+                lblNewLabel.setBounds(500, 0, 296, 477);
+                contentPane.add(lblNewLabel);
     }
 }
 

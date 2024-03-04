@@ -57,6 +57,9 @@ public class DepositarOperacion extends JFrame {
 	                	 int saldoADepositar = Integer.parseInt(cantidadText);
 	                	
 	                    if (saldoADepositar <= 2000000) {
+	                    	
+	                    	//Valida que el metodo haya corrido correctamente
+	                    	if(controller_cuenta.depositarSaldo(cuenta, saldoADepositar)) {
 	                        // Verificar si la cuenta es de tipo CAJA_DE_AHORRO o CUENTA_CORRIENTE
 	                        // Tu lógica de verificación y extracción aquí
 	                        controller_cuenta.depositarSaldo(cuenta, saldoADepositar);
@@ -72,7 +75,9 @@ public class DepositarOperacion extends JFrame {
 	                        frame.numeroDeCuentaOperacionExitosa = numeroDeCuentaDepositar;
 	                        frame.setVisible(true);
 	                        dispose();
-	                        
+	                    	}
+	                    	
+	                    	
 	                    } else {
 	                        JOptionPane.showMessageDialog(null, "El monto de deposito no puede exceder 2,000,000.");
 	                    }

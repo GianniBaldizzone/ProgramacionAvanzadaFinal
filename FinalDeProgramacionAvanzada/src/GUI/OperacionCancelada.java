@@ -74,8 +74,24 @@ public class OperacionCancelada extends JFrame {
 		lblNewLabel_2.setBounds(152, 120, 200, 210);
 		contentPane.add(lblNewLabel_2);
 		
-		JButton btnVolver = new JButton("Volver");
+		JButton btnVolver = new JButton("Cerrar sesion");
 		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				dispose();
+				Login frame = new Login();
+				frame.setVisible(true);
+				
+			}
+		});
+		btnVolver.setForeground(Color.WHITE);
+		btnVolver.setFont(new Font("Arial", Font.PLAIN, 20));
+		btnVolver.setBackground(Color.RED);
+		btnVolver.setBounds(577, 29, 181, 63);
+		contentPane.add(btnVolver);
+		
+		JButton btnCancelar = new JButton("Seguir operando");
+		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				dispose();
@@ -95,14 +111,13 @@ public class OperacionCancelada extends JFrame {
 	    		frame.lbl_usuario.setText(nombreUsuario);
 		        frame.numeroDeCuenta = numeroDeCuentaOperacionCancelada;
 				
-				
 			}
 		});
-		btnVolver.setForeground(Color.WHITE);
-		btnVolver.setFont(new Font("Arial", Font.PLAIN, 20));
-		btnVolver.setBackground(Color.RED);
-		btnVolver.setBounds(577, 29, 162, 63);
-		contentPane.add(btnVolver);
+		btnCancelar.setForeground(Color.WHITE);
+		btnCancelar.setFont(new Font("Arial", Font.PLAIN, 20));
+		btnCancelar.setBackground(new Color(0, 221, 0));
+		btnCancelar.setBounds(577, 120, 181, 63);
+		contentPane.add(btnCancelar);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(OperacionCancelada.class.getResource("/Iconos/city.png")));
