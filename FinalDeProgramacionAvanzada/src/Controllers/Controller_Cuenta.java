@@ -1,11 +1,13 @@
 package Controllers;
 
 import java.sql.Connection;
-
-
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -13,6 +15,8 @@ import Modelo.Cuenta;
 import Modelo.CuentaAhorro;
 import Modelo.CuentaCorriente;
 import Modelo.TipoCuenta;
+import Modelo.TipoTransaccion;
+import Modelo.Transaccion;
 
 public class Controller_Cuenta {
 	
@@ -240,6 +244,57 @@ public class Controller_Cuenta {
 	                JOptionPane.showMessageDialog(null, "No se encontró una de las cuentas");
 	            }
 	        }
-	}
+	        
+	        public double consultarSaldo(int numeroDeCuenta) {
+	            double saldo = 0.0;
+	            try {
+	                String query = "SELECT saldo FROM cuenta WHERE numero_cuenta = ?";
+	                PreparedStatement statement = connection.prepareStatement(query);
+	                statement.setInt(1, numeroDeCuenta);
+	                ResultSet resultSet = statement.executeQuery();
+
+	                if (resultSet.next()) {
+	                    saldo = resultSet.getDouble("saldo");
+	                } else {
+	                    JOptionPane.showMessageDialog(null, "No se encontró la cuenta");
+	                }
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	            return saldo;
+	        }
+	        
+	        
+	     // Método para obtener los últimos movimientos de la cuenta
+	        public List<Transaccion> obtenerUltimosMovimientos(Cuenta cuenta) {
+	            List<Transaccion> ultimosMovimientos = new ArrayList<>();
+	            String query = "SELECT id, fecha_transaccion, monto, tipo FROM transaccion WHERE cuenta_id = ? ORDER BY fecha_transaccion DESC";
+
+	            try (PreparedStatement stmt = connection.prepareStatement(query)) {
+	                stmt.setInt(1, cuenta.getId());
+
+	                try (ResultSet rs = stmt.executeQuery()) {
+	                    while (rs.next()) {
+	                        int id = rs.getInt("id");
+	                        Date fechaTransaccion = rs.getDate("fecha_transaccion");
+	                        double monto = rs.getDouble("monto");
+	                        String tipo = rs.getString("tipo");
+
+	                        // Convierte el String del tipo de transacción a un valor del enum TipoTransaccion
+	                        TipoTransaccion tipoTransaccion = TipoTransaccion.valueOf(tipo.toUpperCase());
+
+	                        // Crea el objeto Transaccion con los valores obtenidos de la base de datos
+	                        Transaccion transaccion = new Transaccion(id, fechaTransaccion, cuenta.getId(), monto, tipoTransaccion);
+
+	                        ultimosMovimientos.add(transaccion);
+	                    }
+	                }
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+
+	            return ultimosMovimientos;
+	        }
+}
 
 

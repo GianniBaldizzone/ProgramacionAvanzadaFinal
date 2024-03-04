@@ -24,6 +24,11 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
 
 public class TranferirOperacion extends JFrame {
 
@@ -46,90 +51,81 @@ public class TranferirOperacion extends JFrame {
 	    }
 
 	    // Verificar si los valores ingresados son números enteros
+	    if (!cantidad.getText().matches("\\d+") && numeroDeCuentaDestino.getText().matches("\\d+")) {
+	        JOptionPane.showMessageDialog(null, "Por favor ingrese un valor numérico válido para ambos campos.");
+	        return;
+	    }
+
+	    // Verificar si los valores ingresados no superan los 10 dígitos
 	    if (!cantidad.getText().matches("\\d{1,10}") || !numeroDeCuentaDestino.getText().matches("\\d{1,10}")) {
 	        JOptionPane.showMessageDialog(null, "El número de cuenta destino y el monto de transferencia deben tener hasta 10 dígitos.");
 	        return;
 	    }
 
-	    String numeroDeCuentaTranferirString = String.valueOf(numeroDeCuentaTranferir);
-
-	    int numeroCuentaOrigen1 = Integer.parseInt(numeroDeCuentaTranferirString);
+	    // Convertir los valores de texto a números enteros
 	    int numeroCuentaDestino1 = Integer.parseInt(numeroDeCuentaDestino.getText());
+	    int montoTransferencia = Integer.parseInt(cantidad.getText());
 
 	    // Obtener cuentas de origen y destino
-	    Cuenta cuentaOrigen = controller_cuenta.obtenerCuentaPorNumeroDeCuenta(numeroCuentaOrigen1);
+	    Cuenta cuentaOrigen = controller_cuenta.obtenerCuentaPorNumeroDeCuenta(numeroCuentaOrigen);
 	    Cuenta cuentaDestino = controller_cuenta.obtenerCuentaPorNumeroDeCuenta(numeroCuentaDestino1);
 
 	    if (cuentaOrigen != null && cuentaDestino != null) {
-	        // Verificar que se haya ingresado un valor en el textFieldcantidad
-	        String cantidadText = cantidad.getText();
-	        if (!cantidadText.isEmpty()) {
-	            // Verificar si el valor ingresado es un número entero positivo
-	            if (cantidadText.matches("\\d+")) {
-	                int montoTransferencia = Integer.parseInt(cantidadText);
+	        // Verificar si el monto de transferencia es válido
+	        if (montoTransferencia > 0 && montoTransferencia <= 2000000) {
+	            String mensaje = "¿Estás seguro de transferir $" + cantidad.getText() + " a la cuenta " + numeroDeCuentaDestino.getText() + "?";
+	            int confirmacion = JOptionPane.showConfirmDialog(null, mensaje, "Confirmación de Transferencia", JOptionPane.YES_NO_OPTION);
 
-	                // Verificar si el monto de transferencia es válido
-	                if (montoTransferencia > 0 && montoTransferencia <= 2000000) {
-	                    String mensaje = "¿Estás seguro de transferir $" + cantidad.getText() + " a la cuenta " + numeroDeCuentaDestino.getText() + "?";
-	                    int confirmacion = JOptionPane.showConfirmDialog(null, mensaje, "Confirmación de Transferencia", JOptionPane.YES_NO_OPTION);
+	            // Mostrar cuadro de diálogo de confirmación
+	            if (confirmacion == JOptionPane.YES_OPTION) {
+	                // Intentar realizar la transferencia
+	                boolean extraccionExitosa = controller_cuenta.extraerSaldo(cuentaOrigen, montoTransferencia);
+	                
+	                // Verificar si la extracción fue exitosa
+	                if (extraccionExitosa) {
+	                    // Intentar realizar el depósito
+	                    boolean depositoExitoso = controller_cuenta.depositarSaldo(cuentaDestino, montoTransferencia);
+	                    
+	                    // Verificar si el depósito fue exitoso
+	                    if (depositoExitoso) {
+	                        // Crear transacción de transferencia origen
+	                        Transaccion transaccionOrigen = new Transaccion();
+	                        transaccionOrigen.setMonto(montoTransferencia);
+	                        transaccionOrigen.setCuentaId(cuentaOrigen.getId()); // Usar cuenta origen para identificar la transacción
+	                        transaccionOrigen.setTipo(TipoTransaccion.TRANSFENCIA_ORIGEN);
+	                        // Generar transacción ORIGEN
+	                        controller_transaccion.generarTransaccion(transaccionOrigen);
 
-	                    // Mostrar cuadro de diálogo de confirmación
-	                    if (confirmacion == JOptionPane.YES_OPTION) {
-	                        // Intentar realizar la transferencia
-	                        boolean extraccionExitosa = controller_cuenta.extraerSaldo(cuentaOrigen, montoTransferencia);
-	                        
-	                        // Verificar si la extracción fue exitosa
-	                        if (extraccionExitosa) {
-	                            // Intentar realizar el depósito
-	                            boolean depositoExitoso = controller_cuenta.depositarSaldo(cuentaDestino, montoTransferencia);
-	                            
-	                            // Verificar si el depósito fue exitoso
-	                            if (depositoExitoso) {
-	                                // Crear transacción de transferencia origen
-	                                Transaccion transaccionOrigen = new Transaccion();
-	                                transaccionOrigen.setMonto(montoTransferencia);
-	                                transaccionOrigen.setCuentaId(cuentaOrigen.getId()); // Usar cuenta origen para identificar la transacción
-	                                transaccionOrigen.setTipo(TipoTransaccion.TRANSFENCIA_ORIGEN);
-	                                // Generar transacción ORIGEN
-	                                controller_transaccion.generarTransaccion(transaccionOrigen);
+	                        // Crear transacción de transferencia destino
+	                        Transaccion transaccionDestino = new Transaccion();
+	                        transaccionDestino.setMonto(montoTransferencia);
+	                        transaccionDestino.setCuentaId(cuentaDestino.getId()); // Usar cuenta destino para identificar la transacción
+	                        transaccionDestino.setTipo(TipoTransaccion.TRANFERENCIA_DESTINO);
+	                        // Generar transacción DESTINO
+	                        controller_transaccion.generarTransaccion(transaccionDestino);
 
-	                                // Crear transacción de transferencia destino
-	                                Transaccion transaccionDestino = new Transaccion();
-	                                transaccionDestino.setMonto(montoTransferencia);
-	                                transaccionDestino.setCuentaId(cuentaDestino.getId()); // Usar cuenta destino para identificar la transacción
-	                                transaccionDestino.setTipo(TipoTransaccion.TRANFERENCIA_DESTINO);
-	                                // Generar transacción DESTINO
-	                                controller_transaccion.generarTransaccion(transaccionDestino);
-
-	                                // Mostrar mensaje de éxito
-	                                JOptionPane.showMessageDialog(null, "Transferencia exitosa");
-	                                OperacionExitosa frame = new OperacionExitosa(cantidad.getText(), TipoTransaccion.TRANFERENCIA.toString());
-	                                frame.numeroDeCuentaOperacionExitosa = numeroDeCuentaTranferir;
-	                                frame.setVisible(true);
-	                                // Cerrar la ventana actual (si es necesario)
-	                                dispose();
-	                            } else {
-	                                JOptionPane.showMessageDialog(null, "No se pudo completar la transferencia. El depósito falló.");
-	                            }
-	                        } else {
-	                            JOptionPane.showMessageDialog(null, "No se pudo completar la transferencia. La extracción falló.");
-	                        }
+	                        // Mostrar mensaje de éxito
+	                        JOptionPane.showMessageDialog(null, "Transferencia exitosa");
+	                        OperacionExitosa frame = new OperacionExitosa(cantidad.getText(), TipoTransaccion.TRANFERENCIA.toString());
+	                        frame.numeroDeCuentaOperacionExitosa = numeroDeCuentaTranferir;
+	                        frame.setVisible(true);
+	                        // Cerrar la ventana actual (si es necesario)
+	                        dispose();
+	                    } else {
+	                        JOptionPane.showMessageDialog(null, "No se pudo completar la transferencia. El depósito falló.");
 	                    }
 	                } else {
-	                    JOptionPane.showMessageDialog(null, "El monto de transferencia debe ser un valor entre 1 y 2,000,000.");
+	                    JOptionPane.showMessageDialog(null, "No se pudo completar la transferencia. La extracción falló.");
 	                }
-	            } else {
-	                JOptionPane.showMessageDialog(null, "Por favor ingrese un valor numérico entero válido.");
 	            }
 	        } else {
-	            JOptionPane.showMessageDialog(null, "Por favor ingrese un valor en el campo.");
+	            JOptionPane.showMessageDialog(null, "El monto de transferencia debe ser un valor entre 1 y 2,000,000.");
 	        }
 	    } else {
 	        JOptionPane.showMessageDialog(null, "Una de las cuentas no se encontró.");
 	    }
 	}
 
-	
 	
 	/**
 	 * Launch the application.

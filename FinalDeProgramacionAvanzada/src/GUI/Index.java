@@ -130,6 +130,10 @@ public class Index extends JFrame {
 		btnNewButton_3.setFont(new Font("Arial", Font.BOLD, 20));
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				dispose();
+		        ConsultarSaldoOperacion frame = new ConsultarSaldoOperacion(numeroDeCuenta);
+		        frame.setVisible(true);
 			}
 		});
 		btnNewButton_3.setBounds(374, 301, 184, 63);
@@ -159,7 +163,9 @@ public class Index extends JFrame {
 		JButton btnNewButton_5 = new JButton("Ultimos movimientos");
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				dispose();
+				UltimosMovimientosOperacion frame = new UltimosMovimientosOperacion(numeroDeCuenta);
+		        frame.setVisible(true);
 			}
 		});
 		btnNewButton_5.setForeground(new Color(255, 255, 255));

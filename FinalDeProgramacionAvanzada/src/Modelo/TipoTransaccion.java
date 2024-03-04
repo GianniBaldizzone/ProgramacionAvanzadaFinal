@@ -6,7 +6,7 @@ public enum TipoTransaccion {
 	    TRANFERENCIA_DESTINO,
 	    EXTRAER,
 	    DEPOSITAR,
-	    CONSULTARSALDO,
+	    CONSULTAR_SALDO,
 	    TRANFERENCIA,
 	    
 	    

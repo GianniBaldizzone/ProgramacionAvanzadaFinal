@@ -13,7 +13,11 @@ public class Transaccion {
     public Transaccion() {
     }
 
-    // Constructor completo
+    public Date getFechaTransaccion() {
+		return fechaTransaccion;
+	}
+
+	// Constructor completo
     public Transaccion(int id, Date fechaTransaccion, int cuentaId, double monto, TipoTransaccion tipo) {
         this.id = id;
         this.fechaTransaccion = fechaTransaccion;
