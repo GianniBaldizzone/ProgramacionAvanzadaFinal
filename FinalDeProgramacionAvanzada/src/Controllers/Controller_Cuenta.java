@@ -193,40 +193,33 @@ public class Controller_Cuenta {
 	    }
 
 	        
-	        public Cuenta obtenerCuentaPorNumeroDeCuenta(int numeroDeCuenta) {
-	        	Cuenta cuenta = null;
-	            try {
-	                String query = "SELECT * FROM cuenta WHERE numero_cuenta = ?";
-	                PreparedStatement statement = connection.prepareStatement(query);
-	                statement.setInt(1, numeroDeCuenta);
-	                ResultSet resultSet = statement.executeQuery();
+	    public Cuenta obtenerCuentaPorNumeroDeCuenta(int numeroDeCuenta) {
+	        Cuenta cuenta = null;
+	        try {
+	            String query = "SELECT * FROM cuenta WHERE numero_cuenta = ?";
+	            PreparedStatement statement = connection.prepareStatement(query);
+	            statement.setInt(1, numeroDeCuenta);
+	            ResultSet resultSet = statement.executeQuery();
 
-	                if (resultSet.next()) {
-	                	
-	                	if(resultSet.getString("tipo_cuenta").equals("CAJA_DE_AHORRO")) {
-	                	cuenta = new CuentaAhorro();
-	                    cuenta.setId(resultSet.getInt("id"));
-	                    cuenta.setNumeroCuenta(resultSet.getInt("numero_cuenta"));
-	                    cuenta.setSaldo(resultSet.getDouble("saldo"));
-	                    cuenta.setPin(resultSet.getString("pin"));
+	            if (resultSet.next()) {
+	                if(resultSet.getString("tipo_cuenta").equals("CAJA_DE_AHORRO")) {
+	                    cuenta = new CuentaAhorro();
 	                    cuenta.setTipoCuenta(TipoCuenta.CAJA_DE_AHORRO);
-	                    cuenta.setUsuarioId(resultSet.getInt("usuario_id"));}
-	                    
-	                }else {
-	                	
-	                	cuenta = new CuentaCorriente();
-	                    cuenta.setId(resultSet.getInt("id"));
-	                    cuenta.setNumeroCuenta(resultSet.getInt("numero_cuenta"));
-	                    cuenta.setSaldo(resultSet.getDouble("saldo"));
-	                    cuenta.setPin(resultSet.getString("pin"));
+	                } else {
+	                    cuenta = new CuentaCorriente();
 	                    cuenta.setTipoCuenta(TipoCuenta.CUENTA_CORRIENTE);
-	                    cuenta.setUsuarioId(resultSet.getInt("usuario_id"));
 	                }
-	            } catch (SQLException e) {
-	                e.printStackTrace();
+	                cuenta.setId(resultSet.getInt("id"));
+	                cuenta.setNumeroCuenta(resultSet.getInt("numero_cuenta"));
+	                cuenta.setSaldo(resultSet.getDouble("saldo"));
+	                cuenta.setPin(resultSet.getString("pin"));
+	                cuenta.setUsuarioId(resultSet.getInt("usuario_id"));
 	            }
-	            return cuenta;
+	        } catch (SQLException e) {
+	            e.printStackTrace();
 	        }
+	        return cuenta;
+	    }
 	        
 	        
 	        public void transferirSaldo(Cuenta cuentaOrigen, Cuenta cuentaDestino, int montoTransferencia) {

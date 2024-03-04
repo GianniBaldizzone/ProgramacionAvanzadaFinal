@@ -63,7 +63,7 @@ public class Login extends JFrame {
 	        return; // Salir del método si los campos no contienen solo números
 	    }
 	    
-	    if (numeroCuentaTexto.length() > 10 || pinTexto.length() > 10) {
+	    if (numeroCuentaTexto.length() > 10 || pinTexto.length() > 4) {
 	        JOptionPane.showMessageDialog(null, "Has ingresado una cantidad incorrecta para estos campos, prueba nuevamente.");
 	        return; // Salir del método si los campos contienen más de 10 dígitos
 	    }

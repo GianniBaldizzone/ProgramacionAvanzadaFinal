@@ -55,13 +55,14 @@ public class ExtraerOperacion extends JFrame {
 	                
 	                // Verificar si la longitud de saldoAExtraer no excede 10 dígitos
 	                if (cantidadText.length() <= 10) {
-	                    // Verificar si el saldo a extraer no excede el límite de 1,000,000
+	                    // Verificar si el saldo a extraer no excede el límite de 2000000$
 	                	
 	                	 int saldoAExtraer = Integer.parseInt(cantidadText);
 	                	
 	                    if (saldoAExtraer <= 2000000) {
-	                        // Verificar si la cuenta es de tipo CAJA_DE_AHORRO o CUENTA_CORRIENTE
-	                        // Tu lógica de verificación y extracción aquí
+	                        
+	                    	// Verificar si la cuenta es de tipo CAJA_DE_AHORRO o CUENTA_CORRIENTE
+	                        
 	                        controller_cuenta.extraerSaldo(cuenta, saldoAExtraer);
 	                        transaccion = new Extraer();
 	                        transaccion.setMonto(saldoAExtraer);
