@@ -91,7 +91,7 @@ public class Index extends JFrame {
 		lbl_usuario.setForeground(new Color(38, 217, 65));
 		lbl_usuario.setFont(new Font("KG Red Hands", Font.PLAIN, 25));
 		
-		JButton btnNewButton_1 = new JButton("Depositar");
+		JButton btnNewButton_1 = new JButton("Deposito");
 		btnNewButton_1.setBackground(new Color(38, 217, 65));
 		btnNewButton_1.setForeground(new Color(255, 255, 255));
 		btnNewButton_1.setFont(new Font("Arial", Font.BOLD, 20));
@@ -139,7 +139,7 @@ public class Index extends JFrame {
 		btnNewButton_3.setBounds(99, 288, 240, 63);
 		panel.add(btnNewButton_3);
 		
-		JButton btnNewButton_4 = new JButton("Extraer");
+		JButton btnNewButton_4 = new JButton("Extracci\u00F3n");
 		btnNewButton_4.setBackground(new Color(38, 217, 65));
 		btnNewButton_4.setFont(new Font("Arial", Font.BOLD, 20));
 		btnNewButton_4.setForeground(new Color(255, 255, 255));
@@ -160,7 +160,7 @@ public class Index extends JFrame {
 		lblNewLabel.setBounds(640, 0, 262, 506);
 		panel.add(lblNewLabel);
 		
-		JButton btnNewButton_5 = new JButton("Ultimos movimientos");
+		JButton btnNewButton_5 = new JButton("Movimientos");
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
