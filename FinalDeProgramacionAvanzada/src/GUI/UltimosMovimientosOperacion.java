@@ -53,10 +53,10 @@ public class UltimosMovimientosOperacion extends JFrame {
             // Agregamos las transacciones al modelo de la tabla
             for (Transaccion transaccion : todosLosMovimientos) {
                 Object[] rowData = {
-                    transaccion.getId(),
                     transaccion.getFechaTransaccion(),
                     transaccion.getMonto(),
-                    transaccion.getTipo()
+                    transaccion.getTipo(),
+                    
                 };
                 model.addRow(rowData);
             }

@@ -10,6 +10,8 @@ import Controllers.Controller_Cuenta;
 import Controllers.Controller_DataBase;
 import Controllers.Controller_Transaccion;
 import Controllers.Controller_Usuario;
+import Modelo.Cuenta;
+import Modelo.TipoTransaccion;
 
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -30,48 +32,60 @@ public class ModificarPinOperacion extends JFrame {
 	int numeroDeCuentaPinNuevo;
 	
 	
-	/*public void modificarPin() {
-		
-		
-        conexion = new Controller_DataBase();
+	public void modificarPin() {
+	    conexion = new Controller_DataBase();
 	    Controller_Cuenta controller_cuenta = new Controller_Cuenta(conexion.conectar());
-	    
+
 	    // Verificar que ambos campos estén completados
-	    if (pinActualText.getText().isEmpty() || pinNuevoText.getText().isEmpty()) {
+	    if (pinActual.getText().isEmpty() || pinNuevo.getText().isEmpty()) {
 	        JOptionPane.showMessageDialog(null, "Por favor complete ambos campos.");
 	        return;
 	    }
 
 	    // Verificar si los valores ingresados son números enteros
-	    if (!pinNuevoText.getText().matches("\\d+") || !pinNuevoText.getText().matches("\\d+")) {
-	        JOptionPane.showMessageDialog(null, "Por favor ingrese un valor numérico válido para ambos campos.");
-	        return;
-	    }
+	    try {
+	        int pinActualInt = Integer.parseInt(pinActual.getText());
+	        int pinNuevoInt = Integer.parseInt(pinNuevo.getText());
 
-	    // Verificar si los valores ingresados no superan los 10 dígitos
-	    if (cantidad.getText().length() > 10 || numeroDeCuentaDestino.getText().length() > 10) {
-	        JOptionPane.showMessageDialog(null, "El número de cuenta destino y el monto de transferencia deben tener hasta 10 dígitos.");
-	        return;
+	        // Verificar si los valores ingresados no superan los 10 dígitos
+	        if (pinActual.getText().length() > 4 || pinNuevo.getText().length() > 4) {
+	            JOptionPane.showMessageDialog(null, "El número de pin debe tener 4 dígitos.");
+	            return;
+	        }
+
+	        int numero_de_cuenta = numeroDeCuentaPinNuevo;
+	        Cuenta cuenta = controller_cuenta.obtenerCuentaPorNumeroDeCuenta(numeroDeCuentaPinNuevo);
+
+	        if (controller_cuenta.autenticar(numeroDeCuentaPinNuevo, pinActualInt)) {
+	            JOptionPane.showMessageDialog(null, "Pin actual ingresado correctamente.");
+
+	            // Mostrar cuadro de diálogo de confirmación
+	            String mensaje = "¿Estás seguro de cambiar tu pin de " + pinActualInt + " a " + pinNuevoInt + "?";
+	            int confirmacion = JOptionPane.showConfirmDialog(null, mensaje, "Confirmación de cambio de PIN", JOptionPane.YES_NO_OPTION);
+
+	            if (confirmacion == JOptionPane.YES_OPTION) {
+	                boolean modificado = controller_cuenta.modificarPin(cuenta.getId(), pinNuevo.getText());
+	                if (modificado) {
+	                    JOptionPane.showMessageDialog(null, "PIN modificado correctamente.");
+	                    
+	                    OperacionExitosa frame = new OperacionExitosa(pinNuevo.getText(), "MODIFICAR_PIN");
+                        frame.numeroDeCuentaOperacionExitosa = numeroDeCuentaPinNuevo;
+                        frame.setVisible(true);
+                        // Cerrar la ventana actual
+                        dispose();
+	                } else {
+	                    JOptionPane.showMessageDialog(null, "Error al modificar el PIN.");
+	                }
+	            }
+	        } else {
+	            JOptionPane.showMessageDialog(null, "El PIN actual no coincide con la cuenta en sesión.");
+	        }
+	    } catch (NumberFormatException e) {
+	        JOptionPane.showMessageDialog(null, "Por favor ingrese un valor numérico válido para ambos campos.");
 	    }
-	    
-	    String pinActualText = pinActual.getText();
-        String pinNuevoText = pinNuevo.getText();
-	    
-       
-            int pinActualInt = Integer.parseInt(pinActualText);
-            
-            boolean modificado = controller_cuenta.modificarPin(numeroDeCuentaPinNuevo, pinNuevoText);
-            if (modificado) {
-                System.out.println("PIN modificado correctamente");
-            } else {
-                System.out.println("Error al modificar el PIN");
-            }
-        } else {
-            System.out.println("Por favor, complete ambos campos");
-        }
-}
-		
 	}
+		
+	
 
 	/**
 	 * Launch the application.
@@ -128,6 +142,12 @@ public class ModificarPinOperacion extends JFrame {
 		contentPane.add(lblNewLabel_1_1);
 		
 		JButton btnModificar = new JButton("Modificar");
+		btnModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				modificarPin();
+			}
+		});
 		btnModificar.setForeground(Color.WHITE);
 		btnModificar.setFont(new Font("Arial", Font.PLAIN, 20));
 		btnModificar.setBackground(new Color(0, 128, 255));

@@ -104,7 +104,7 @@ public class Index extends JFrame {
 				
 			}
 		});
-		btnNewButton_1.setBounds(107, 180, 194, 63);
+		btnNewButton_1.setBounds(374, 288, 194, 63);
 		panel.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Tranferencia");
@@ -121,7 +121,7 @@ public class Index extends JFrame {
 				
 			}
 		});
-		btnNewButton_2.setBounds(107, 301, 194, 63);
+		btnNewButton_2.setBounds(374, 392, 194, 63);
 		panel.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Consultar saldo");
@@ -136,7 +136,7 @@ public class Index extends JFrame {
 		        frame.setVisible(true);
 			}
 		});
-		btnNewButton_3.setBounds(374, 301, 184, 63);
+		btnNewButton_3.setBounds(99, 288, 240, 63);
 		panel.add(btnNewButton_3);
 		
 		JButton btnNewButton_4 = new JButton("Extraer");
@@ -171,7 +171,7 @@ public class Index extends JFrame {
 		btnNewButton_5.setForeground(new Color(255, 255, 255));
 		btnNewButton_5.setBackground(new Color(38, 217, 65));
 		btnNewButton_5.setFont(new Font("Arial", Font.BOLD, 20));
-		btnNewButton_5.setBounds(222, 418, 240, 63);
+		btnNewButton_5.setBounds(99, 180, 240, 63);
 		panel.add(btnNewButton_5);
 		
 		JLabel lblNewLabel_1 = new JLabel("Seleccione que operaci\u00F3n desea realizar");
@@ -183,6 +183,22 @@ public class Index extends JFrame {
 		lblNewLabel_2.setIcon(new ImageIcon(Index.class.getResource("/Iconos/favicon.png")));
 		lblNewLabel_2.setBounds(29, 38, 45, 30);
 		panel.add(lblNewLabel_2);
+		
+		JButton btnNewButton_3_1 = new JButton("Modificar pin");
+		btnNewButton_3_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				ModificarPinOperacion frame = new ModificarPinOperacion();
+				frame.setVisible(true);
+				frame.numeroDeCuentaPinNuevo = numeroDeCuenta;
+				
+			}
+		});
+		btnNewButton_3_1.setForeground(Color.WHITE);
+		btnNewButton_3_1.setFont(new Font("Arial", Font.BOLD, 20));
+		btnNewButton_3_1.setBackground(new Color(38, 217, 65));
+		btnNewButton_3_1.setBounds(99, 392, 240, 63);
+		panel.add(btnNewButton_3_1);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();

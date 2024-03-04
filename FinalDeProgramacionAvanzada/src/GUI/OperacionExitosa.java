@@ -110,7 +110,7 @@ public class OperacionExitosa extends JFrame {
 		    btnVolver.setForeground(Color.WHITE);
 		    btnVolver.setFont(new Font("Arial", Font.PLAIN, 20));
 		    btnVolver.setBackground(new Color(0, 221, 0));
-		    btnVolver.setBounds(580, 117, 196, 63);
+		    btnVolver.setBounds(564, 117, 212, 63);
 		    contentPane.add(btnVolver);
 		    
 		    JButton btnCerraSesion_1 = new JButton("Cerra sesion");
@@ -127,7 +127,7 @@ public class OperacionExitosa extends JFrame {
 		    btnCerraSesion_1.setForeground(Color.WHITE);
 		    btnCerraSesion_1.setFont(new Font("Arial", Font.PLAIN, 20));
 		    btnCerraSesion_1.setBackground(Color.RED);
-		    btnCerraSesion_1.setBounds(580, 26, 196, 63);
+		    btnCerraSesion_1.setBounds(564, 26, 212, 63);
 		    contentPane.add(btnCerraSesion_1);
 		    
 		    JLabel lblNewLabel = new JLabel("");
