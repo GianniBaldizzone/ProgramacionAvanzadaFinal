@@ -55,16 +55,10 @@ public class TranferirOperacion extends JFrame {
 
 	    int numeroCuentaOrigen1 = Integer.parseInt(numeroDeCuentaTranferirString);
 	    int numeroCuentaDestino1 = Integer.parseInt(numeroDeCuentaDestino.getText());
-	    System.out.println(numeroCuentaOrigen1);
-	    System.out.println(numeroCuentaDestino1);
-	    System.out.println(cantidad.getText());
 
 	    // Obtener cuentas de origen y destino
 	    Cuenta cuentaOrigen = controller_cuenta.obtenerCuentaPorNumeroDeCuenta(numeroCuentaOrigen1);
 	    Cuenta cuentaDestino = controller_cuenta.obtenerCuentaPorNumeroDeCuenta(numeroCuentaDestino1);
-
-	    System.out.println(cuentaOrigen);
-	    System.out.println(cuentaDestino);
 
 	    if (cuentaOrigen != null && cuentaDestino != null) {
 	        // Verificar que se haya ingresado un valor en el textFieldcantidad
@@ -81,39 +75,45 @@ public class TranferirOperacion extends JFrame {
 
 	                    // Mostrar cuadro de diálogo de confirmación
 	                    if (confirmacion == JOptionPane.YES_OPTION) {
+	                        // Intentar realizar la transferencia
+	                        boolean extraccionExitosa = controller_cuenta.extraerSaldo(cuentaOrigen, montoTransferencia);
+	                        
+	                        // Verificar si la extracción fue exitosa
+	                        if (extraccionExitosa) {
+	                            // Intentar realizar el depósito
+	                            boolean depositoExitoso = controller_cuenta.depositarSaldo(cuentaDestino, montoTransferencia);
+	                            
+	                            // Verificar si el depósito fue exitoso
+	                            if (depositoExitoso) {
+	                                // Crear transacción de transferencia origen
+	                                Transaccion transaccionOrigen = new Transaccion();
+	                                transaccionOrigen.setMonto(montoTransferencia);
+	                                transaccionOrigen.setCuentaId(cuentaOrigen.getId()); // Usar cuenta origen para identificar la transacción
+	                                transaccionOrigen.setTipo(TipoTransaccion.TRANSFENCIA_ORIGEN);
+	                                // Generar transacción ORIGEN
+	                                controller_transaccion.generarTransaccion(transaccionOrigen);
 
-	                        // Extraer saldo de la cuenta de origen
-	                        controller_cuenta.extraerSaldo(cuentaOrigen, montoTransferencia);
+	                                // Crear transacción de transferencia destino
+	                                Transaccion transaccionDestino = new Transaccion();
+	                                transaccionDestino.setMonto(montoTransferencia);
+	                                transaccionDestino.setCuentaId(cuentaDestino.getId()); // Usar cuenta destino para identificar la transacción
+	                                transaccionDestino.setTipo(TipoTransaccion.TRANFERENCIA_DESTINO);
+	                                // Generar transacción DESTINO
+	                                controller_transaccion.generarTransaccion(transaccionDestino);
 
-	                        // Depositar saldo en la cuenta de destino
-	                        controller_cuenta.depositarSaldo(cuentaDestino, montoTransferencia);
-
-	                        // Crear transacción de transferencia origen
-	                        Transaccion transaccionOrigen = new Transaccion();
-	                        transaccionOrigen.setMonto(montoTransferencia);
-	                        transaccionOrigen.setCuentaId(cuentaOrigen.getId()); // Usar cuenta origen para identificar la transacción
-	                        transaccionOrigen.setTipo(TipoTransaccion.TRANSFENCIA_ORIGEN);
-	                        // Generar transacción ORIGEN
-	                        controller_transaccion.generarTransaccion(transaccionOrigen);
-
-	                        // Crear transacción de transferencia origen
-	                        Transaccion transaccionDestino = new Transaccion();
-	                        transaccionDestino.setMonto(montoTransferencia);
-	                        transaccionDestino.setCuentaId(cuentaDestino.getId()); // Usar cuenta origen para identificar la transacción
-	                        transaccionDestino.setTipo(TipoTransaccion.TRANFERENCIA_DESTINO);
-	                        // Generar transacción ORIGEN
-	                        controller_transaccion.generarTransaccion(transaccionDestino);
-
-	                        // Mostrar mensaje de éxito
-	                        JOptionPane.showMessageDialog(null, "Transferencia exitosa");
-	                        OperacionExitosa frame = new OperacionExitosa(cantidad.getText(), TipoTransaccion.TRANFERENCIA.toString());
-	                        frame.numeroDeCuentaOperacionExitosa = numeroDeCuentaTranferir;
-	                        frame.setVisible(true);
-	                        // Cerrar la ventana actual (si es necesario)
-	                        dispose();
-
-	                    } else if (confirmacion == JOptionPane.NO_OPTION) {
-	                        JOptionPane.getRootFrame().dispose();
+	                                // Mostrar mensaje de éxito
+	                                JOptionPane.showMessageDialog(null, "Transferencia exitosa");
+	                                OperacionExitosa frame = new OperacionExitosa(cantidad.getText(), TipoTransaccion.TRANFERENCIA.toString());
+	                                frame.numeroDeCuentaOperacionExitosa = numeroDeCuentaTranferir;
+	                                frame.setVisible(true);
+	                                // Cerrar la ventana actual (si es necesario)
+	                                dispose();
+	                            } else {
+	                                JOptionPane.showMessageDialog(null, "No se pudo completar la transferencia. El depósito falló.");
+	                            }
+	                        } else {
+	                            JOptionPane.showMessageDialog(null, "No se pudo completar la transferencia. La extracción falló.");
+	                        }
 	                    }
 	                } else {
 	                    JOptionPane.showMessageDialog(null, "El monto de transferencia debe ser un valor entre 1 y 2,000,000.");
@@ -129,8 +129,6 @@ public class TranferirOperacion extends JFrame {
 	    }
 	}
 
-	
-	
 	
 	
 	/**

@@ -130,7 +130,7 @@ public class Controller_Cuenta {
 	        }
 	    }
 	    
-	    public void extraerSaldo(Cuenta cuenta, int dineroAExtraer) {
+	    public boolean extraerSaldo(Cuenta cuenta, int dineroAExtraer) {
 	        try {
 	            // Verificar si se obtuvo la cuenta
 	            if (cuenta != null) {
@@ -148,6 +148,7 @@ public class Controller_Cuenta {
 	                    int rowsUpdated = statement.executeUpdate();
 	                    if (rowsUpdated > 0) {
 	                        JOptionPane.showMessageDialog(null, "Extracción exitosa");
+	                        return true; // Operación exitosa, devuelve true
 	                    } else {
 	                        JOptionPane.showMessageDialog(null, "Error al actualizar el saldo");
 	                    }
@@ -160,9 +161,10 @@ public class Controller_Cuenta {
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }
+	        return false; // La operación falló, devuelve false
 	    }
-	    
-	    public void depositarSaldo(Cuenta cuenta, int dineroADepositar) {
+
+	    public boolean depositarSaldo(Cuenta cuenta, int dineroADepositar) {
 	        try {
 	            // Verificar si se obtuvo la cuenta
 	            if (cuenta != null) {
@@ -177,7 +179,8 @@ public class Controller_Cuenta {
 	                    
 	                    int rowsUpdated = statement.executeUpdate();
 	                    if (rowsUpdated > 0) {
-	                        JOptionPane.showMessageDialog(null, "Deposito exitoso");
+	                        JOptionPane.showMessageDialog(null, "Depósito exitoso");
+	                        return true; // Operación exitosa, devuelve true
 	                    } else {
 	                        JOptionPane.showMessageDialog(null, "Error al actualizar el saldo");
 	                    }
@@ -190,6 +193,7 @@ public class Controller_Cuenta {
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }
+	        return false; // La operación falló, devuelve false
 	    }
 
 	        
