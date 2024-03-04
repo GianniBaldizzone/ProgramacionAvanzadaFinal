@@ -17,6 +17,9 @@ public class main {
 
 	public static void main(String[] args) {
 		
+		
+		//CODIGO TESTING PARA CREAR CUENTAS
+		
 		/*Controller_DataBase conexion = new Controller_DataBase();
 	    
 		// Crear una instancia del controlador
@@ -39,6 +42,8 @@ public class main {
     
         
         */
+		
+		//CODIGO TESTING PARA CREAR CUENTAS
 	
 		
 		Login frame = new Login();
