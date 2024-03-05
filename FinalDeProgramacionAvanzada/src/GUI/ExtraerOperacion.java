@@ -59,7 +59,7 @@ public class ExtraerOperacion extends JFrame {
 	                	
 	                	 int saldoAExtraer = Integer.parseInt(cantidadText);
 	                	
-	                    if (saldoAExtraer <= 2000000) {
+	                    if (saldoAExtraer <= 2000000 && saldoAExtraer >0) {
 	                        
 	                    	// Verificar si la cuenta es de tipo CAJA_DE_AHORRO o CUENTA_CORRIENTE
 	                        if(controller_cuenta.extraerSaldo(cuenta, saldoAExtraer)) {
@@ -84,7 +84,7 @@ public class ExtraerOperacion extends JFrame {
 	                       
 	                        
 	                    } else {
-	                        JOptionPane.showMessageDialog(null, "El monto de extracción no puede exceder 2,000,000.");
+	                        JOptionPane.showMessageDialog(null, "El monto de extracción no puede exceder 2,000,000 $ o ser menor a 0 $.");
 	                    }
 	                } else {
 	                    JOptionPane.showMessageDialog(null, "La longitud del saldo a extraer no puede exceder 10 dígitos.");

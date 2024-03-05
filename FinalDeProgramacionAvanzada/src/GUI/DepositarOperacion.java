@@ -56,7 +56,7 @@ public class DepositarOperacion extends JFrame {
 	                	
 	                	 int saldoADepositar = Integer.parseInt(cantidadText);
 	                	
-	                    if (saldoADepositar <= 2000000) {
+	                    if (saldoADepositar <= 2000000 && saldoADepositar > 0) {
 	                    	
 	                    	//Valida que el metodo haya corrido correctamente
 	                    	if(controller_cuenta.depositarSaldo(cuenta, saldoADepositar)) {
