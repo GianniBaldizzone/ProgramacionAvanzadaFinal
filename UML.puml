@@ -1,0 +1,313 @@
+@startuml
+class GUI.Index {
+- JPanel contentPane
+- JButton btnNewButton
+~ JLabel lbl_usuario
+~ int numeroDeCuenta
+- JLabel lblNewLabel_3
++ {static} void main(String[])
+}
+class GUI.ConsultarSaldoOperacion {
+- JPanel contentPane
+~ int numeroDeCuentaConsultarSaldo
+- Controller_DataBase conexion
+- Controller_Cuenta controllerCuenta
+}
+class GUI.Login {
+- JPanel contentPane
+- JTextField txtIngreseNumeroDe
+- int numero_de_cuenta
+- int pin
+- JPasswordField textField
+- Controller_DataBase conexion
+- void ingresar()
++ {static} void main(String[])
+}
+class Controllers.Controller_DataBase {
+~ Connection con
++ Connection conectar()
++ void desconectar()
+}
+class Datos.Profesor {
+- int nrolegajo
++ int getNrolegajo()
++ void setNrolegajo(int)
+}
+class Negocios.Validador {
+~ Persona Verificador
++ boolean ValidarIngreso(String,String,String,int)
++ boolean ValidarEditar(String,String,String,int)
++ boolean ValidarEliminar(String)
++ LinkedList<Persona> Mostrar()
+}
+class Controllers.Controller_Cuenta {
+- Connection connection
++ boolean autenticar(int,int)
++ boolean altaCuenta(Cuenta)
+- int generarNumeroCuentaUnico()
+- boolean verificarNumeroRepetido(int)
++ boolean bajaCuenta(int)
++ boolean modificarPin(int,String)
++ boolean extraerSaldo(Cuenta,int)
++ boolean depositarSaldo(Cuenta,int)
++ Cuenta obtenerCuentaPorNumeroDeCuenta(int)
++ void transferirSaldo(Cuenta,Cuenta,int)
++ double consultarSaldo(int)
++ List<Transaccion> obtenerUltimosMovimientos(Cuenta)
+}
+class Controllers.Controller_Usuario {
+- Connection conexion
++ String obtenerNombreUsuario(int)
++ void agregarUsuario(Usuario)
++ void eliminarUsuario(int)
++ void modificarUsuario(Usuario)
+}
+class Controllers.Controller_Transaccion {
+- Connection conexion
++ void generarTransaccion(Transaccion)
+}
+class Datos.Conexion {
+~ Connection con
++ Connection conectar()
+}
+class GUI.UltimosMovimientosOperacion {
+- JPanel contentPane
+- JTable table
+- Controller_Cuenta controllerCuenta
+- Controller_DataBase conexion
+~ int numeroDeCuentaUltimosMovimientos
+- JLabel lblNewLabel
+- JLabel lblNewLabel_2
+- JLabel lblNewLabel_1
+- JButton btnVolver
+- void cargarTodosLosMovimientos()
+}
+class Test.main {
++ {static} void main(String[])
+}
+class Datos.Alumno {
+- int NroAlumno
+~ Conexion con
+~ Connection conexion
+~ PreparedStatement stmt
++ int getNroAlumno()
++ String toString()
++ void setNroAlumno(int)
++ boolean guardarAlumno(Alumno)
++ boolean ActualizarAlumno(Alumno)
++ LinkedList<Alumno> ListaAl(Alumno)
++ boolean eliminar(Alumno)
+}
+class Datos.Persona {
+- String nombre
+- String apellido
+- String dni
+- int rol
+~ Conexion con
+~ Connection conexion
+~ PreparedStatement stmt
++ boolean guardar()
++ boolean editar()
++ boolean Eliminar()
++ LinkedList<Persona> Mostrar()
++ int getRol()
++ void setRol(int)
++ String getNombre()
++ void setNombre(String)
++ String getApellido()
++ void setApellido(String)
++ String getDni()
++ void setDni(String)
++ String toString()
+}
+class Modelo.CuentaAhorro {
+}
+enum Modelo.TipoTransaccion {
++  TRANSFENCIA_ORIGEN
++  TRANFERENCIA_DESTINO
++  EXTRAER
++  DEPOSITAR
++  TRANFERENCIA
+}
+class GUI.DepositarOperacion {
+- JPanel contentPane
+~ int numeroDeCuentaDepositar
+- Controller_DataBase conexion
+- JTextField cantidad
++ void depositar(int)
++ {static} void main(String[])
+}
+class Modelo.ConsultarSaldo {
+}
+class GUI.OperacionExitosa {
+- JPanel contentPane
+- String valor
+- String operacion
+~ int numeroDeCuentaOperacionExitosa
+- Controller_DataBase conexion
++ {static} void main(String[])
+}
+class GUI.ExtraerOperacion {
+- JPanel contentPane
+- JSpinner cantidad
+~ int numeroDeCuentaExtraer
+- Controller_DataBase conexion
+- JTextField textFieldcantidad
++ void extraer(int)
++ {static} void main(String[])
+}
+class Modelo.Cuenta {
+- int id
+- int numeroCuenta
+- double saldo
+- String pin
+- TipoCuenta tipoCuenta
+- int usuarioId
++ int getId()
++ void setId(int)
++ int getNumeroCuenta()
++ void setNumeroCuenta(int)
++ double getSaldo()
++ void setSaldo(double)
++ String getPin()
++ void setPin(String)
++ TipoCuenta getTipoCuenta()
++ void setTipoCuenta(TipoCuenta)
++ int getUsuarioId()
++ void setUsuarioId(int)
+}
+class IU.Interfaz {
+~ {static} Scanner entrada
+~ {static} Listado legajo
++ void Login()
+- void SobreCarga()
+- void imprimirMenu()
+- void ListaAlumno()
+- void Editardb()
+- void menuAlter(Alumno)
+- void Borrar(Alumno)
+- void Editar(Alumno)
+- void Ingresar()
+- void Buscar()
+- void verPerfiles()
+- void guardar()
+- void Salir()
+}
+class IU.Main {
++ {static} void main(String[])
+}
+class Modelo.Tranferir {
+}
+class Modelo.CuentaCorriente {
+}
+class GUI.OperacionCancelada {
+- JPanel contentPane
+- String valor
+- String operacion
+~ int numeroDeCuentaOperacionCancelada
+- Controller_DataBase conexion
++ {static} void main(String[])
+}
+class Modelo.Extraer {
+}
+class Modelo.Depositar {
+}
+class Modelo.Transaccion {
+- int id
+- Date fechaTransaccion
+- int cuentaId
+- double monto
+- TipoTransaccion tipo
++ Date getFechaTransaccion()
++ int getId()
++ void setId(int)
++ void setFechaTransaccion(Date)
++ int getCuentaId()
++ void setCuentaId(int)
++ double getMonto()
++ void setMonto(double)
++ TipoTransaccion getTipo()
++ void setTipo(TipoTransaccion)
+}
+class GUI.ModificarPinOperacion {
+- JPanel contentPane
+- JTextField pinActual
+- JTextField pinNuevo
+- Controller_DataBase conexion
+~ int numeroDeCuentaPinNuevo
++ void modificarPin()
++ {static} void main(String[])
+}
+class GUI.TranferirOperacion {
+- JPanel contentPane
+- JTextField numeroDeCuentaDestino
+- JTextField cantidad
+- Controller_DataBase conexion
+~ int numeroDeCuentaTranferir
++ void transferir(int)
++ {static} void main(String[])
+}
+class Modelo.Usuario {
+- int id
+- String nombre
+- String apellido
+- String mail
+- String telefono
+- String direccion
+- String dni
++ int getId()
++ void setId(int)
++ String getNombre()
++ void setNombre(String)
++ String getApellido()
++ void setApellido(String)
++ String getMail()
++ void setMail(String)
++ String getTelefono()
++ void setTelefono(String)
++ String getDireccion()
++ void setDireccion(String)
++ String getDni()
++ void setDni(String)
+}
+class Negocios.Listado {
+~ LinkedList<Alumno> Estudiante
++ {static} void main(String[])
++ boolean GuardarAlumno(Alumno)
++ boolean EditarAlumno(Alumno)
++ LinkedList<Alumno> ListaAlumnos(Alumno)
++ boolean BorrrarAlumno(Alumno)
++ boolean add(Alumno)
++ Alumno buscar(String)
++ boolean Borrar(Alumno)
++ int Indexalumno(Alumno)
++ boolean Editar(Alumno)
++ LinkedList<Alumno> getUsuarios()
++ void setUsuarios(LinkedList<Alumno>)
++ String toString()
+}
+enum Modelo.TipoCuenta {
++  CUENTA_CORRIENTE
++  CAJA_DE_AHORRO
+}
+
+
+javax.swing.JFrame <|-- GUI.Index
+javax.swing.JFrame <|-- GUI.ConsultarSaldoOperacion
+javax.swing.JFrame <|-- GUI.Login
+Datos.Persona <|-- Datos.Profesor
+javax.swing.JFrame <|-- GUI.UltimosMovimientosOperacion
+Datos.Persona <|-- Datos.Alumno
+Modelo.Cuenta <|-- Modelo.CuentaAhorro
+javax.swing.JFrame <|-- GUI.DepositarOperacion
+Modelo.Transaccion <|-- Modelo.ConsultarSaldo
+javax.swing.JFrame <|-- GUI.OperacionExitosa
+javax.swing.JFrame <|-- GUI.ExtraerOperacion
+Modelo.Transaccion <|-- Modelo.Tranferir
+Modelo.Cuenta <|-- Modelo.CuentaCorriente
+javax.swing.JFrame <|-- GUI.OperacionCancelada
+Modelo.Transaccion <|-- Modelo.Extraer
+Modelo.Transaccion <|-- Modelo.Depositar
+javax.swing.JFrame <|-- GUI.ModificarPinOperacion
+javax.swing.JFrame <|-- GUI.TranferirOperacion
+@enduml
