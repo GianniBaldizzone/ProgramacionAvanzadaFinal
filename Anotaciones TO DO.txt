@@ -26,3 +26,6 @@ Anotaciones:
 -Cambiar el pin modificar el texto
 
 -Reestructurar validaciones
+
+- En depositar operacion habría que colocar 7 digitos en la linea 54,
+ y colocar en el comentario de la linea 55 que son 2 millones
