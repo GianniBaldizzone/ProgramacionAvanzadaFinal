@@ -36,6 +36,26 @@ public class Controller_Usuario {
         return nombreUsuario;
     }
     
+    public int obtenerIdUsuarioPorDNI(int dni) {
+        int idUsuario = -1; // Valor predeterminado en caso de que no se encuentre ningún usuario
+
+        try {
+            // Consulta para obtener el ID del usuario asociado al DNI
+            String query = "SELECT id FROM usuario WHERE dni = ?";
+            PreparedStatement statement = (PreparedStatement) conexion.prepareStatement(query);
+            statement.setInt(1, dni);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                idUsuario = resultSet.getInt("id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return idUsuario;
+    }
+    
     public void agregarUsuario(Usuario usuario) throws SQLException {
         String query = "INSERT INTO usuario (nombre, apellido, mail, telefono, direccion, dni) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = (PreparedStatement) conexion.prepareStatement(query)) {

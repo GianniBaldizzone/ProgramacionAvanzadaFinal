@@ -196,11 +196,6 @@ public class Login extends JFrame {
 		city.setIcon(new ImageIcon(Login.class.getResource("/Iconos/city.png")));
 		contentPane.add(city);
 		
-		JLabel lblNewLabel_3 = new JLabel("");
-		lblNewLabel_3.setIcon(new ImageIcon(Login.class.getResource("/Iconos/favicon.png")));
-		lblNewLabel_3.setBounds(72, 44, 45, 36);
-		contentPane.add(lblNewLabel_3);
-		
 		JLabel lblNewLabel_2_1 = new JLabel("Banco Davinci");
 		lblNewLabel_2_1.setForeground(new Color(0, 109, 219));
 		lblNewLabel_2_1.setFont(new Font("Impact", Font.PLAIN, 25));
@@ -214,5 +209,20 @@ public class Login extends JFrame {
 		JLabel lblNewLabel_5 = new JLabel("Numero de pin");
 		lblNewLabel_5.setBounds(72, 247, 85, 13);
 		contentPane.add(lblNewLabel_5);
+		
+		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				ABMCuenta frame = new ABMCuenta();
+				frame.setVisible(true);
+				dispose();
+				
+			}
+		});
+		btnNewButton_1.setBackground(new Color(255, 255, 255));
+		btnNewButton_1.setIcon(new ImageIcon(Login.class.getResource("/Iconos/favicon.png")));
+		btnNewButton_1.setBounds(72, 44, 45, 36);
+		contentPane.add(btnNewButton_1);
 	}
 }
