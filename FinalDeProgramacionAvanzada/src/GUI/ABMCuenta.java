@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
@@ -145,7 +146,7 @@ public class ABMCuenta extends JFrame {
 		btnNewButton_4_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//Alta usuario
+				JOptionPane.showMessageDialog(null, "Para usar esta función, debes solicitar autorización del banco.", "Autorización del Banco", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		btnNewButton_4_1.setForeground(Color.WHITE);
@@ -157,6 +158,8 @@ public class ABMCuenta extends JFrame {
 		JButton btnNewButton_1_1 = new JButton("Baja Usuario");
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				JOptionPane.showMessageDialog(null, "Para usar las funciones de usuariosn, debes solicitar autorización del banco.", "Autorización del Banco", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		btnNewButton_1_1.setForeground(Color.WHITE);
@@ -169,7 +172,7 @@ public class ABMCuenta extends JFrame {
 		btnNewButton_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//Modificar usuario
+				JOptionPane.showMessageDialog(null, "Para usar las funciones de usuariosn, debes solicitar autorización del banco.", "Autorización del Banco", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		btnNewButton_2_1.setForeground(Color.WHITE);
