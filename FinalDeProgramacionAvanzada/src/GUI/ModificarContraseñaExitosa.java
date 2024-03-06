@@ -78,7 +78,7 @@ public class ModificarContraseñaExitosa extends JFrame {
 		    lblOperacion.setBounds(229, 189, 283, 27);
 		    contentPane.add(lblOperacion);
 
-		    JLabel lblValor = new JLabel("Nuevo Pin: <dynamic>");
+		    JLabel lblValor = new JLabel("Nuevo Pin: " + valor);
 		    lblValor.setForeground(new Color(0, 128, 255));
 		    lblValor.setFont(new Font("Arial", Font.BOLD, 20));
 		    lblValor.setBounds(229, 246, 243, 44);
