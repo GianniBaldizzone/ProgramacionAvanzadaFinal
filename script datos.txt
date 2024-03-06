@@ -1,0 +1,17 @@
+Carga de datos inicial:
+
+INSERT INTO `usuario` (`nombre`, `apellido`, `mail`, `telefono`, `direccion`, `dni`) 
+VALUES 
+('Gianni', 'Baldizzone', 'gianni@gmail.com', '1145678907', 'Acoyte 420', '44891361'),
+('Victoria', 'Troiano', 'vic@gmail.com', '1123456789', 'Billinghurst 234', '44567432'),
+('Gamaliel', 'Quiroz', 'gamaliel@example.com', '123456789', 'Calle Principal', '12345678'),
+('Carlos', 'García', 'carlos@example.com', '1122334455', 'Av. Libertador 123', '11223344'),
+('Ana', 'Martínez', 'ana@example.com', '9988776655', 'Calle San Martín 567', '55667788'),
+('Juan', 'Pérez', 'juan@example.com', '5544332211', 'Av. Rivadavia 789', '77889900'),
+('María', 'López', 'maria@example.com', '1122003344', 'Calle Belgrano 456', '33445566'),
+('Luis', 'Gómez', 'luis@example.com', '6677889900', 'Av. Corrientes 890', '88990011'),
+('Laura', 'Fernández', 'laura@example.com', '1122334466', 'Calle Uruguay 123', '22334455'),
+('Pedro', 'Rodríguez', 'pedro@example.com', '9988776655', 'Av. 9 de Julio 678', '66778899'),
+('Sofía', 'Díaz', 'sofia@example.com', '4455667788', 'Calle 25 de Mayo 345', '55667788'),
+('Pablo', 'Hernández', 'pablo@example.com', '7788990011', 'Av. Santa Fe 789', '88990011'),
+('Elena', 'Giménez', 'elena@example.com', '1122334455', 'Calle Suipacha 234', '33445566');
