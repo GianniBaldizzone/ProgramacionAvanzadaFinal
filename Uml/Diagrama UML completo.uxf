@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>180</y>
+      <w>240</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Clase&gt;&gt;
+Controller_Usuario
+--
+- Connection conexion
+--
++ String obtenerNombreUsuario(int)
++ void agregarUsuario(Usuario)
++ void eliminarUsuario(int)
++ void modificarUsuario(Usuario)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>270</x>
+      <y>40</y>
+      <w>370</w>
+      <h>270</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Clase&gt;&gt;
+Controller_Cuenta
+--
+- Connection conection
+--
++ boolean autenticar(int,int)
++ boolean altaCuenta(Cuenta)
+- int geenerarNumeroCuentaUnico()
+- boolean verificarNumeroRepetido(int)
++ boolean bajaCuenta(int)
++ boolean modificarPin(int,String)
++ boolean extraerSaldo(Cuenta,int)
++ boolean depositarSaldo(Cuenta,int)
++ Cuenta obtenerCentaPorNumeroDeCuenta(int)
++ void transferirSaldo(Cuenta,Cuenta,int)
++ double consultarSaldo(int)
++ List&lt;Transaccion&gt;obtenerUltimosMovimientos(Cuenta)
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>50</x>
+      <y>540</y>
+      <w>270</w>
+      <h>300</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Clase&gt;&gt;
+Transaccion
+--
+- int id
+- Date fecha Transaccion
+- inf cuentaId
+- double monto
+- TipoTransaccion tipo
+--
++ Date getFechaTransaccion()
++ int getId
++ void setId(int)
++ void setFechaTransaccion(Date)
++ int  getCuentaId()
++ void setCuentaId(int)
++ double getMonto()
++ void setMonto(double)
++ TipoTransaccion getTipo()
++ void setTipo(TipoTransaccion)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>180</x>
+      <y>970</y>
+      <w>120</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Clase&gt;&gt;
+ConsultarSaldo
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>40</x>
+      <y>970</y>
+      <w>120</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Clase&gt;&gt;
+ConsultarSaldo
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>220</x>
+      <y>900</y>
+      <w>120</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Clase&gt;&gt;
+ConsultarSaldo
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>910</y>
+      <w>120</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Clase&gt;&gt;
+ConsultarSaldo
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>80</x>
+      <y>830</y>
+      <w>30</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>220</x>
+      <y>830</y>
+      <w>30</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>140</x>
+      <y>830</y>
+      <w>30</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>190</x>
+      <y>830</y>
+      <w>30</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>360</x>
+      <y>540</y>
+      <w>210</w>
+      <h>350</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Clase&gt;&gt;
+Cuenta
+--
+- int id
+- int numeroCuenta
+- double saldo
+- String pin
+- TipoCuenta tipoCuenta
+- int usuarioId
+--
++ int getId()
++ void setId(int)
++ int getNumeroCuenta()
++ void setNumeroCuenta(int)
++ double getSaldo()
++ void setSaldo(double)
++ String getPin()
++ void setPint(String)
++ TipoCuenta getTipoCuenta()
++ void set TipoCuenta(TipoCuenta)
++ int getUsuarioId()
++ void setUsuarioId(int)
+group=group-0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>490</x>
+      <y>940</y>
+      <w>120</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Clase&gt;&gt;
+CuentaAhorro
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>360</x>
+      <y>940</y>
+      <w>120</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Clase&gt;&gt;
+CuentaCorriente
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>480</x>
+      <y>880</y>
+      <w>50</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;30.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>450</x>
+      <y>880</y>
+      <w>30</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>820</x>
+      <y>540</y>
+      <w>210</w>
+      <h>400</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Clase&gt;&gt;
+Usuario
+--
+- int id
+- String nombre
+- String apellido
+- String mail
+- String telefono
+- String direccion
+- String dni
+--
++ int getId()
++ void setId(int)
++ String getNombre()
++ void setNombre(String)
++ String getApellido
++ void setApellido(String)
++ String getMail()
++ void setMail(String)
++ String getTelefono()
++ void setTelefono()
++ String getDireccion()
++ void setDireccion(String)
++ String getDni()
++ void setDni(String)
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>590</x>
+      <y>540</y>
+      <w>210</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enum&gt;&gt;
+TipoTransaccion
+--
++ TRANFERENCIA_ORIGEN
++ TRANFERENCIA_DESTINO
++ EXTRAER
++ DEPOSITAR
++ TRANSFERENCIA</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>590</x>
+      <y>690</y>
+      <w>210</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enum&gt;&gt;
+TipoCuenta
+--
++ CUENTA_CORRIENTE
++ CAJA_DE_AHORRO</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>0</x>
+      <y>500</y>
+      <w>1080</w>
+      <h>530</h>
+    </coordinates>
+    <panel_attributes>Modelo
+--
+bg=#AEE160</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>360</x>
+      <y>1290</y>
+      <w>300</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Clase&gt;&gt;
+UltimosMovimientosOperacion
+--
+- Jpanel contentPane
+- JTable table
+- Controller_Cuenta contrellerCuenta
+- Controller_DataBase conexion
+~ int numeroDeCuentaUltimosMovimientos
+- Jlabel lblNewLabel
+- Jlabel lblNewLabel_2
+- Jlabel lblNewLabel_1
+- JButton btnVolver
+--
++ void cargarTodoLosMovimientos()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>30</x>
+      <y>1100</y>
+      <w>300</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Clase&gt;&gt;
+TranferirOperacion
+--
+- Jpanel contentPane
+- JTextField numeroDeCuentaDestino
+- JTextField cantidad
+- Controller_DataBase conexion
+~ int numeroDeCuentaTransferir
+--
++ void tranferir(int)
++ void main(String[])</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>680</x>
+      <y>1290</y>
+      <w>300</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Clase&gt;&gt;
+Login
+--
+- JPanel contentPane
+- JTextField tctIngreseNumeroDe
+- int numero_de_cuenta
+- int pin
+- JPasswordField textField
+- Controller_DataBase conexion
+--
++ void ingresar()
++ void main(String[])
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>30</x>
+      <y>1290</y>
+      <w>300</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Clase&gt;&gt;
+DepositarOperacion
+--
+- JPanel contentPane
+~ int numeroDeCuentaDepositar
+- Controller_DataBase conexion
+- JTextField cantidad
+--
++ void depositar(int)
++ void main(String[])
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1000</x>
+      <y>1290</y>
+      <w>300</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Clase&gt;&gt;
+ConsultarSaldoOperacion
+--
+- JPanel contentPane
+~ int numeroDeConsultarSaldo
+- Controller_DataBase conexion
+- Controller_Cuenta controllerCuenta
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1320</x>
+      <y>1290</y>
+      <w>300</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Clase&gt;&gt;
+Index
+--
+- JPanel contentPane
+- JButton btnNewButton
+~ JLabel lbl_usuario
+~ int numeroDeCuenta
+- JLabel lblNewLabel_3
+--
++ void main(String[])</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>360</x>
+      <y>1100</y>
+      <w>300</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Clase&gt;&gt;
+ModificarPinOperacion
+--
+- Jpanel contentPane
+- JTextField pinActual
+- JTextField pinNuevo
+- Controller_DataBase conexion
+~ int numeroDeCuentaPinNuevo
+--
++ void modificarPin()
++ void main(String[])</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>680</x>
+      <y>1100</y>
+      <w>300</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Clase&gt;&gt;
+OperacionCancelada
+--
+- Jpanel contentPane
+- String valor
+- String operacion
+~ int numeroDeCuentaOperacionCancelada
+- Controller_DataBase conexion
+--
++ void main(String[])</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1000</x>
+      <y>1100</y>
+      <w>300</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Clase&gt;&gt;
+ExtraerOperacion 
+--
+- Jpanel contentPane
+- JSpinner cantidad
+~ int numeroDeCuentaExtraer
+- Controller_DataBase conexion
+- JTextField textFieldcantidad
+--
++ void extraer(int)
++ void main(String[])</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1320</x>
+      <y>1100</y>
+      <w>300</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Clase&gt;&gt;
+OperacionExitosa
+--
+- Jpanel contentPane
+- String valor
+- String operacion
+~ int numeroDeCuentaOperacionExitosa
+- Controller_DataBase conexion
+--
++ void main(String[])</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>0</x>
+      <y>1050</y>
+      <w>1650</w>
+      <h>470</h>
+    </coordinates>
+    <panel_attributes>GUI
+--
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>720</x>
+      <y>80</y>
+      <w>210</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Clase&gt;&gt;
+Main
+--
++ void main(String[])</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>680</x>
+      <y>30</y>
+      <w>300</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>Test
+--
+bg=#B38EDA</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>40</y>
+      <w>240</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Clase&gt;&gt;
+Controller_Database
+--
+~ Connection con
+--
++ Connection conectar()
++ void desconectar()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>330</y>
+      <w>240</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Clase&gt;&gt;
+Controller_Usuario
+--
+- Connection conexion
+--
++ void generarTransaccion(Trsnsaccion)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>0</x>
+      <y>0</y>
+      <w>660</w>
+      <h>480</h>
+    </coordinates>
+    <panel_attributes>Controllers
+--
+bg=#9BEDF7</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
