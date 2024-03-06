@@ -51,7 +51,7 @@ public class DepositarOperacion extends JFrame {
 	               
 	                
 	                // Verificar si la longitud de saldoAExtraer no excede 10 dígitos
-	                if (cantidadText.length() < 7) {
+	                if (cantidadText.length() <= 7) {
 	                    // Verificar si el saldo a extraer no excede el límite de 1,000,000
 	                	
 	                	 int saldoADepositar = Integer.parseInt(cantidadText);
@@ -62,7 +62,7 @@ public class DepositarOperacion extends JFrame {
 	                    	if(controller_cuenta.depositarSaldo(cuenta, saldoADepositar)) {
 	                        // Verificar si la cuenta es de tipo CAJA_DE_AHORRO o CUENTA_CORRIENTE
 	                        // Tu lógica de verificación y extracción aquí
-	                        controller_cuenta.depositarSaldo(cuenta, saldoADepositar);
+	                        
 	                        transaccion = new Extraer();
 	                        transaccion.setMonto(saldoADepositar);
 	                        transaccion.setCuentaId(cuenta.getId());

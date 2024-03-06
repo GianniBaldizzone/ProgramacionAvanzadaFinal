@@ -46,6 +46,8 @@ public class main {
 		//CODIGO TESTING PARA CREAR CUENTAS
 	
 		
+		
+		
 		Login frame = new Login();
 		frame.setVisible(true);
 	

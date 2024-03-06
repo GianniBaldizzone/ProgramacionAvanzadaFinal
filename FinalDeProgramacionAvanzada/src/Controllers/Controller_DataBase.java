@@ -12,17 +12,19 @@ public class Controller_DataBase {
 	Connection con ;
 	
 	
-	public Connection conectar() {
-	try {
-	Class.forName("com.mysql.jdbc.Driver");
-	con = 
-	(Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/cajero","root","");
-	System.out.println("Conexion a la base de datos exitosa");
-	} catch (Exception e) {
-	System.out.println("Error al conectarse a la base de datos");
-	}
-	return con; 
-	}
+	   public Connection conectar() {
+	        Connection con = null;
+	        try {
+	            Class.forName("com.mysql.jdbc.Driver");
+	            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/cajero", "root", "");
+	            System.out.println("Conexion a la base de datos exitosa");
+	        } catch (Exception e) {
+	            JOptionPane.showMessageDialog(null, "Error al conectarse a la base de datos: " + e.getMessage(), "Error de conexión", JOptionPane.ERROR_MESSAGE);
+	            System.out.println("Error al conectarse a la base de datos: " + e.getMessage());
+	        }
+	        return con;
+	    }
+	
 	 
 	public void desconectar() {
 	        try {

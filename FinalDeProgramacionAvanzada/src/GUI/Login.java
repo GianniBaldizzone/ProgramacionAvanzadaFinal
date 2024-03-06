@@ -38,6 +38,8 @@ public class Login extends JFrame {
 	private JPasswordField textField;
 	private Controller_DataBase conexion;
 	
+
+	
 	
 	
 	private void ingresar() {
