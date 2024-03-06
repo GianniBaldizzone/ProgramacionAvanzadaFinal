@@ -52,6 +52,14 @@ public class ModificarPinOperacion extends JFrame {
 	            JOptionPane.showMessageDialog(null, "El número de pin debe tener 4 dígitos.");
 	            return;
 	        }
+	        
+	        if (pinActualInt == pinNuevoInt) {
+	            JOptionPane.showMessageDialog(null, "No puedes utilizar la misma contraseña. Prueba nuevamente");
+	            return;
+	        }
+	        
+	        
+	        
 
 	        int numero_de_cuenta = numeroDeCuentaPinNuevo;
 	        Cuenta cuenta = controller_cuenta.obtenerCuentaPorNumeroDeCuenta(numeroDeCuentaPinNuevo);

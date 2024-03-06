@@ -79,7 +79,7 @@ public class DepositarOperacion extends JFrame {
 	                    	
 	                    	
 	                    } else {
-	                        JOptionPane.showMessageDialog(null, "El monto de deposito no puede exceder 2,000,000.");
+	                        JOptionPane.showMessageDialog(null, "El monto de deposito no puede exceder 2,000,000 o ser menor a 0 $.");
 	                    }
 	                } else {
 	                    JOptionPane.showMessageDialog(null, "La longitud del saldo a depositar no puede exceder 10 dígitos.");

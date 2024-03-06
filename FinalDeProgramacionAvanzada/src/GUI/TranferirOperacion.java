@@ -61,10 +61,19 @@ public class TranferirOperacion extends JFrame {
 	        JOptionPane.showMessageDialog(null, "El número de cuenta destino y el monto de transferencia deben tener hasta 10 dígitos.");
 	        return;
 	    }
+	    
+	 // Verificar si los valores ingresados no superan los 10 dígitos
+	    
 
 	    // Convertir los valores de texto a números enteros
 	    int numeroCuentaDestino1 = Integer.parseInt(numeroDeCuentaDestino.getText());
 	    int montoTransferencia = Integer.parseInt(cantidad.getText());
+	    
+	    if (numeroCuentaDestino1 == numeroDeCuentaTranferir) {
+	        JOptionPane.showMessageDialog(null, "No es posible tranferirse a uno mismo dinero. Pruebe nuevamente con otro numero");
+	        return;
+	    }
+
 
 	    // Obtener cuentas de origen y destino
 	    Cuenta cuentaOrigen = controller_cuenta.obtenerCuentaPorNumeroDeCuenta(numeroCuentaOrigen);
