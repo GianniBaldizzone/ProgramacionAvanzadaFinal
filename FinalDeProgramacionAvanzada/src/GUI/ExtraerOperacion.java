@@ -54,7 +54,7 @@ public class ExtraerOperacion extends JFrame {
 	               
 	                
 	                // Verificar si la longitud de saldoAExtraer no excede 10 dígitos
-	                if (cantidadText.length() <= 10) {
+	                if (cantidadText.length() <= 7) {
 	                    // Verificar si el saldo a extraer no excede el límite de 2000000$
 	                	
 	                	 int saldoAExtraer = Integer.parseInt(cantidadText);
@@ -87,7 +87,7 @@ public class ExtraerOperacion extends JFrame {
 	                        JOptionPane.showMessageDialog(null, "El monto de extracción no puede exceder 2,000,000 $ o ser menor a 0 $.");
 	                    }
 	                } else {
-	                    JOptionPane.showMessageDialog(null, "La longitud del saldo a extraer no puede exceder 10 dígitos.");
+	                    JOptionPane.showMessageDialog(null, "La longitud del saldo a extraer no puede exceder 7 dígitos.");
 	                }
 	            } else {
 	                JOptionPane.showMessageDialog(null, "Por favor ingrese un valor numérico entero válido.");

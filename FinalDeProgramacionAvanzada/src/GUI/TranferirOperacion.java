@@ -62,9 +62,8 @@ public class TranferirOperacion extends JFrame {
 	        return;
 	    }
 	    
-	 // Verificar si los valores ingresados no superan los 10 dígitos
-	    
-
+	
+	   
 	    // Convertir los valores de texto a números enteros
 	    int numeroCuentaDestino1 = Integer.parseInt(numeroDeCuentaDestino.getText());
 	    int montoTransferencia = Integer.parseInt(cantidad.getText());

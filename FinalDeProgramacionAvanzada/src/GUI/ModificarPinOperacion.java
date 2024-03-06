@@ -76,7 +76,7 @@ public class ModificarPinOperacion extends JFrame {
 	                if (modificado) {
 	                    JOptionPane.showMessageDialog(null, "PIN modificado correctamente.");
 	                    
-	                    OperacionExitosa frame = new OperacionExitosa(pinNuevo.getText(), "MODIFICAR_PIN");
+	                    ModificarContrasenaExitosa frame = new ModificarContrasenaExitosa(pinNuevo.getText(), "MODIFICAR_PIN");
                         frame.numeroDeCuentaOperacionExitosa = numeroDeCuentaPinNuevo;
                         frame.setVisible(true);
                         // Cerrar la ventana actual
