@@ -14,16 +14,16 @@ Anotaciones:
 	                    if (saldoADepositar <= 2000000) {
 
 
-- Falta agregar la funcionalidad para modificar el pin
+- Falta agregar la funcionalidad para modificar el pin - completado
 
 
-- Validar extracciones y depositos de 0$
+- Validar extracciones y depositos de 0$ - completado
 
-- Validar tranferencias a la misma
+- Validar tranferencias a la misma - completado
 
--Cambiar contraseña por la misma
+-Cambiar contraseña por la misma - completado
 
--Cambiar el pin modificar el texto
+-Cambiar el pin modificar el texto - completado
 
 -Reestructurar validaciones
 
