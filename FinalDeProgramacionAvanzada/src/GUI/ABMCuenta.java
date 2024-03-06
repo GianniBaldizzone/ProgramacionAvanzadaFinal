@@ -95,14 +95,16 @@ public class ABMCuenta extends JFrame {
 		btnNewButton_1.setBounds(29, 281, 256, 63);
 		panel.add(btnNewButton_1);
 		
-		JButton btnNewButton_2 = new JButton(" Modificacion Cuenta");
+		JButton btnNewButton_2 = new JButton(" Mostrar Cuentas");
 		btnNewButton_2.setBackground(new Color(0, 128, 255));
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
 		btnNewButton_2.setFont(new Font("Arial", Font.BOLD, 20));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//modificar cuenta
+				MostrarCuentas frame = new MostrarCuentas();
+				frame.setVisible(true);
+				dispose();
 				
 			}
 		});
@@ -163,7 +165,7 @@ public class ABMCuenta extends JFrame {
 		btnNewButton_1_1.setBounds(318, 281, 257, 63);
 		panel.add(btnNewButton_1_1);
 		
-		JButton btnNewButton_2_1 = new JButton("Modificacion Usuario");
+		JButton btnNewButton_2_1 = new JButton("Mostrar Usuarios");
 		btnNewButton_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				

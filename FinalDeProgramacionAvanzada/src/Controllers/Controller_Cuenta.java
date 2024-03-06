@@ -298,8 +298,39 @@ public class Controller_Cuenta {
 
 	            return ultimosMovimientos;
 	        }
+
+	        public List<Cuenta> obtenerCuentas() {
+	            List<Cuenta> cuentas = new ArrayList<>();
+	            String query = "SELECT id, numero_cuenta, saldo, pin, tipo_cuenta, usuario_id FROM cuenta";
+
+	            try (PreparedStatement stmt = connection.prepareStatement(query);
+	                 ResultSet rs = stmt.executeQuery()) {
+
+	                while (rs.next()) {
+	                    int id = rs.getInt("id");
+	                    int numeroCuenta = rs.getInt("numero_cuenta");
+	                    double saldo = rs.getDouble("saldo");
+	                    String pin = rs.getString("pin");
+	                    String tipo = rs.getString("tipo_cuenta");
+	                    int usuarioId = rs.getInt("usuario_id");
+	                    
+	                 // Convierte el String del tipo de transacción a un valor del enum TipoTransaccion
+                        TipoCuenta tipoCuenta = TipoCuenta.valueOf(tipo.toUpperCase());
+
+	                    // Crea el objeto Cuenta con los valores obtenidos de la base de datos
+	                    Cuenta cuenta = new Cuenta(id, numeroCuenta, saldo, pin, tipoCuenta, usuarioId);
+	                    cuentas.add(cuenta);
+	                }
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+
+	            return cuentas;
+	        }
+			
 	        
 	        
 }
+
 
 

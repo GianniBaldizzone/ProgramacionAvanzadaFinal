@@ -92,9 +92,9 @@ public class UltimosMovimientosOperacion extends JFrame {
         contentPane.add(lblNewLabel_2);
 
         // Configuramos la etiqueta de "Ultimos movimientos"
-        lblNewLabel_1 = new JLabel("Ultimos movimientos");
+        lblNewLabel_1 = new JLabel("Movimientos de la cuenta");
         lblNewLabel_1.setFont(new Font("KG Red Hands", Font.PLAIN, 18));
-        lblNewLabel_1.setBounds(78, 25, 221, 47);
+        lblNewLabel_1.setBounds(78, 25, 403, 47);
         contentPane.add(lblNewLabel_1);
 
         // Configuramos el botón de "Volver" para regresar a la ventana anterior
